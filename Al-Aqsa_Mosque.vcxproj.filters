@@ -33,6 +33,9 @@
     <ClCompile Include="src\Qubli.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1169,6 +1172,9 @@
     <ClInclude Include="Dependencies\includes\Qubli.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Floor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1581,6 +1587,25 @@
     </None>
     <None Include="res\shaders\Basic.shader" />
     <None Include=".gitignore" />
+    <None Include="Dependencies\dlls\freeglut.dll" />
+    <None Include="Dependencies\dlls\glew32.dll" />
+    <None Include="Dependencies\dlls\glew32mx.dll" />
+    <None Include="Dependencies\dlls\glfw3.dll" />
+    <None Include="Dependencies\dlls\SDL2.dll" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.exe" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.exe.recipe" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.ilk" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.pdb" />
+    <None Include="x64\Debug\vc143.idb" />
+    <None Include="x64\Debug\vc143.pdb" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Al-Aqsa_Mosque.lastbuildstate" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.command.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.read.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.write.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.command.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.read.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.write.1.tlog" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png">
@@ -1613,5 +1638,30 @@
     <Image Include="res\textures\Dome.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\lib\freeglut.lib" />
+    <Library Include="Dependencies\lib\glew32.lib" />
+    <Library Include="Dependencies\lib\glew32mx.lib" />
+    <Library Include="Dependencies\lib\glew32mxs.lib" />
+    <Library Include="Dependencies\lib\glew32s.lib" />
+    <Library Include="Dependencies\lib\glfw3.lib" />
+    <Library Include="Dependencies\lib\glfw3_mt.lib" />
+    <Library Include="Dependencies\lib\glfw3dll.lib" />
+    <Library Include="Dependencies\lib\SDL2.lib" />
+    <Library Include="Dependencies\lib\SDL2main.lib" />
+    <Library Include="Dependencies\lib\SDL2test.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="x64\Debug\Al-Aqsa_Mosque.log" />
+    <Text Include="x64\Debug\Al-Aqsa_Mosque.vcxproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="x64\Debug\Dome.obj" />
+    <Object Include="x64\Debug\glad.obj" />
+    <Object Include="x64\Debug\glm.obj" />
+    <Object Include="x64\Debug\main.obj" />
+    <Object Include="x64\Debug\Octagon.obj" />
+    <Object Include="x64\Debug\Qubli.obj" />
   </ItemGroup>
 </Project>

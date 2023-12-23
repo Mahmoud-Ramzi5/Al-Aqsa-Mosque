@@ -16,6 +16,7 @@
 #include <Octagon.h>
 #include <Dome.h>
 #include <Qubli.h>
+#include<Floor.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -91,6 +92,8 @@ int main(int argc, char* argv[])
 
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
 
+    Floor f = Floor(load_RGBtexture("res/textures/awesomeface.png"));
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -136,11 +139,12 @@ int main(int argc, char* argv[])
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
-        model = glm::translate(model, glm::vec3(1.5, 0.0, 0.0));
+        /* model = glm::translate(model, glm::vec3(1.5, 0.0, 0.0));
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
-
+        */
+        f.DrawFloor();
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
