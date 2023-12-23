@@ -516,6 +516,7 @@
     <ClInclude Include="Dependencies\includes\Dome.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="Dependencies\includes\glm\detail\func_common.inl" />
     <None Include="Dependencies\includes\glm\detail\func_common_simd.inl" />
     <None Include="Dependencies\includes\glm\detail\func_exponential.inl" />

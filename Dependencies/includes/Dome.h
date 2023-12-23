@@ -17,6 +17,7 @@ public:
 	std::vector<glm::vec3> DomeVertices;
 
 	Dome(float radius, int numSegments);
+	void DrawDome();
 
 private:
 	std::vector<glm::vec3> CreateDome();

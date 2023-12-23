@@ -1,9 +1,4 @@
-﻿  Dome.cpp
-D:\U Projects\OpenGL Projects\Al-Aqsa_Mosque\src\Dome.cpp(38,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  main.cpp
+﻿  main.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\U Projects\OpenGL Projects\Al-Aqsa_Mosque\Dependencies\includes\glad\glad.h(894): message : see previous definition of 'APIENTRY'
-  Octagon.cpp
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Al-Aqsa_Mosque.vcxproj -> D:\U Projects\OpenGL Projects\Al-Aqsa_Mosque\x64\Debug\Al-Aqsa_Mosque.exe
+D:\U Projects\OpenGLProjects\Al-Aqsa_Mosque\Dependencies\includes\glad\glad.h(894): message : see previous definition of 'APIENTRY'
+  Al-Aqsa_Mosque.vcxproj -> D:\U Projects\OpenGLProjects\Al-Aqsa_Mosque\x64\Debug\Al-Aqsa_Mosque.exe

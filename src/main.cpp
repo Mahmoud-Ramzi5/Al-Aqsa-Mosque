@@ -14,6 +14,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <Octagon.h>
+#include <Dome.h>
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -86,6 +87,7 @@ int main(int argc, char* argv[])
     shader.use();
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
+    Dome D = Dome(0.35f, 50);
 
 
     // render loop
@@ -129,6 +131,10 @@ int main(int argc, char* argv[])
         glActiveTexture(GL_TEXTURE0);
 
         O.DrawOct();
+        model = glm::translate(model, glm::vec3(0.0, 0.07, 0.0));
+        modelLoc = glGetUniformLocation(shader.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        D.DrawDome();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

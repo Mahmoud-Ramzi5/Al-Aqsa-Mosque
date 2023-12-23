@@ -29,6 +29,11 @@ Dome::Dome(float radius, int numSegments) {
     glBindVertexArray(0);
 }
 
+void Dome::DrawDome() {
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, DomeVertices.size());
+}
+
 // Function to create a dome geometry
 std::vector<glm::vec3> Dome::CreateDome() {
     std::vector<glm::vec3> vertices;
