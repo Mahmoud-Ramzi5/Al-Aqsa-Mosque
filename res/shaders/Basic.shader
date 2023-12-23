@@ -16,7 +16,7 @@ uniform mat4 projection;
 
 void main()
 {
-	gl_Position = projection * model * view * vec4(positions, 1.0f);
+	gl_Position = projection *view * model * vec4(positions, 1.0f);
 	fragmentColors = colors;
 	fragmentTextures = textures;
 };

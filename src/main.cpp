@@ -88,11 +88,11 @@ int main(int argc, char* argv[])
     shader.use();
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
-    Dome D = Dome(0.35f, 50);
-
+    Dome D = Dome(0.75f, 50);
+    Dome D2 = Dome(0.35f, 50);
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
 
-    Floor f = Floor(load_RGBtexture("res/textures/awesomeface.png"));
+    Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
 
     // render loop
     // -----------
@@ -135,15 +135,23 @@ int main(int argc, char* argv[])
         glActiveTexture(GL_TEXTURE0);
 
         O.DrawOct();
+        model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0, 0.07, 0.0));
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
-        /* model = glm::translate(model, glm::vec3(1.5, 0.0, 0.0));
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.5f, 0.0, 0.0));
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
-        */
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.9f, 0.0, 0.25));
+        modelLoc = glGetUniformLocation(shader.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        D2.DrawDome();
+
+
         f.DrawFloor();
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

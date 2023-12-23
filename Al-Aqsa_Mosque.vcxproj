@@ -683,6 +683,7 @@
     <Image Include="res\textures\back.jpg" />
     <Image Include="res\textures\bottom.jpg" />
     <Image Include="res\textures\Dome.png" />
+    <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
     <Image Include="res\textures\left.jpg" />
     <Image Include="res\textures\right.jpg" />
