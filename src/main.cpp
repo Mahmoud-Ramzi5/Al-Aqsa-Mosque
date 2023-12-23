@@ -15,7 +15,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <Octagon.h>
 #include <Dome.h>
-
+#include <Qubli.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -25,8 +25,8 @@ unsigned int load_RGBAtexture(const char* source);
 void processInput(GLFWwindow* window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1000;
+const unsigned int SCR_HEIGHT = 1000;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.4f, 4.0f));
@@ -89,6 +89,7 @@ int main(int argc, char* argv[])
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.35f, 50);
 
+    Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
 
     // render loop
     // -----------
@@ -135,6 +136,10 @@ int main(int argc, char* argv[])
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
+        model = glm::translate(model, glm::vec3(1.5, 0.0, 0.0));
+        modelLoc = glGetUniformLocation(shader.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Q.DrawQubli();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

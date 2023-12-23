@@ -30,6 +30,9 @@
     <ClCompile Include="src\Dome.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Qubli.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1163,6 +1166,9 @@
     <ClInclude Include="Dependencies\includes\Dome.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Qubli.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1599,6 +1605,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\Y.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\Top.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\Dome.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
