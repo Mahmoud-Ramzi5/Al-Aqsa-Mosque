@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Dome.cpp" />
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
@@ -517,10 +518,16 @@
     <ClInclude Include="Dependencies\includes\stb_image.h" />
     <ClInclude Include="Dependencies\includes\Tcamera.h" />
     <ClInclude Include="Dependencies\includes\Dome.h" />
+    <ClInclude Include="Dependencies\includes\Floor.h" />
     <ClInclude Include="Dependencies\includes\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="Dependencies\dlls\freeglut.dll" />
+    <None Include="Dependencies\dlls\glew32.dll" />
+    <None Include="Dependencies\dlls\glew32mx.dll" />
+    <None Include="Dependencies\dlls\glfw3.dll" />
+    <None Include="Dependencies\dlls\SDL2.dll" />
     <None Include="Dependencies\includes\glm\detail\func_common.inl" />
     <None Include="Dependencies\includes\glm\detail\func_common_simd.inl" />
     <None Include="Dependencies\includes\glm\detail\func_exponential.inl" />
@@ -658,6 +665,20 @@
     <None Include="Dependencies\includes\glm\gtx\vector_query.inl" />
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
     <None Include="res\shaders\Basic.shader" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.exe" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.exe.recipe" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.ilk" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.pdb" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Al-Aqsa_Mosque.lastbuildstate" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.command.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.read.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.write.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.command.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.read.1.tlog" />
+    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.write.1.tlog" />
+    <None Include="x64\Debug\vc143.idb" />
+    <None Include="x64\Debug\vc143.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png" />
@@ -665,13 +686,37 @@
     <Image Include="res\textures\bottom.jpg" />
     <Image Include="res\textures\container.jpg" />
     <Image Include="res\textures\Dome.png" />
-    <Image Include="res\textures\face.png" />
     <Image Include="res\textures\front.jpg" />
     <Image Include="res\textures\left.jpg" />
     <Image Include="res\textures\right.jpg" />
     <Image Include="res\textures\Rock.png" />
     <Image Include="res\textures\Top.png" />
     <Image Include="res\textures\Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\lib\freeglut.lib" />
+    <Library Include="Dependencies\lib\glew32.lib" />
+    <Library Include="Dependencies\lib\glew32mx.lib" />
+    <Library Include="Dependencies\lib\glew32mxs.lib" />
+    <Library Include="Dependencies\lib\glew32s.lib" />
+    <Library Include="Dependencies\lib\glfw3.lib" />
+    <Library Include="Dependencies\lib\glfw3dll.lib" />
+    <Library Include="Dependencies\lib\glfw3_mt.lib" />
+    <Library Include="Dependencies\lib\SDL2.lib" />
+    <Library Include="Dependencies\lib\SDL2main.lib" />
+    <Library Include="Dependencies\lib\SDL2test.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="x64\Debug\Al-Aqsa_Mosque.log" />
+    <Text Include="x64\Debug\Al-Aqsa_Mosque.vcxproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="x64\Debug\Dome.obj" />
+    <Object Include="x64\Debug\glad.obj" />
+    <Object Include="x64\Debug\glm.obj" />
+    <Object Include="x64\Debug\main.obj" />
+    <Object Include="x64\Debug\Octagon.obj" />
+    <Object Include="x64\Debug\Qubli.obj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

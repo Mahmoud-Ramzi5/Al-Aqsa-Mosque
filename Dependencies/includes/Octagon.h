@@ -7,40 +7,40 @@ public:
 
     float vertices[208] = {
         // positions          // colors           // texture coords
-        0.0f,  0.0f, 0.5f,    0.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // Vertex 0
+        0.0f,  0.0f, 1.0f,    0.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // Vertex 0
 
-        0.35f, 0.0f, 0.35f,   0.0f, 1.0f, 0.0f,   0.125f, 0.0f, // Vertex 1
-        0.5f,  0.0f, 0.0f,    0.0f, 1.0f, 0.0f,   0.250f, 0.0f, // Vertex 2
-        0.35f, 0.0f, -0.35f,  0.0f, 1.0f, 0.0f,   0.375f, 0.0f, // Vertex 3
-        0.0f, 0.0f, -0.5f,    0.0f, 1.0f, 0.0f,   0.500f, 0.0f, // Vertex 4
-       -0.35f, 0.0f, -0.35f,  0.0f, 1.0f, 0.0f,   0.625f, 0.0f, // Vertex 5
-       -0.5f, 0.0f, 0.0f,     0.0f, 1.0f, 0.0f,   0.750f, 0.0f, // Vertex 6
-       -0.35f, 0.0f, 0.35f,   0.0f, 1.0f, 0.0f,   0.875f, 0.0f, // Vertex 7
+        0.7f, 0.0f, 0.7f,   0.0f, 1.0f, 0.0f,   0.125f, 0.0f, // Vertex 1
+        1.0f,  0.0f, 0.0f,    0.0f, 1.0f, 0.0f,   0.250f, 0.0f, // Vertex 2
+        0.7f, 0.0f, -0.7f,  0.0f, 1.0f, 0.0f,   0.375f, 0.0f, // Vertex 3
+        0.0f, 0.0f, -1.0f,    0.0f, 1.0f, 0.0f,   0.500f, 0.0f, // Vertex 4
+       -0.7f, 0.0f, -0.7f,  0.0f, 1.0f, 0.0f,   0.625f, 0.0f, // Vertex 5
+       -1.0f, 0.0f, 0.0f,     0.0f, 1.0f, 0.0f,   0.750f, 0.0f, // Vertex 6
+       -0.7f, 0.0f, 0.7f,   0.0f, 1.0f, 0.0f,   0.875f, 0.0f, // Vertex 7
 
-        0.0f, 0.0f, 0.5f,     0.0f ,1.0f, 0.0f,   1.0f, 0.0f,   // Vertex 8 (same as the Vertex 0 to close the shape)
+        0.0f, 0.0f, 1.0f,     0.0f ,1.0f, 0.0f,   1.0f, 0.0f,   // Vertex 8 (same as the Vertex 0 to close the shape)
 
         // positions          // colors           // texture coords
-        0.0f, 0.25f, 0.5f,     0.0f, 1.0f, 0.0f,   0.0f, 0.5f,   // vertex 9
+        0.0f, 0.5f, 1.0f,     0.0f, 1.0f, 0.0f,   0.0f, 0.5f,   // vertex 9
 
-        0.35f, 0.25f, 0.35f,   0.0f, 1.0f, 0.0f,   0.125f, 0.5f, // Vertex 10
-        0.5f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,   0.250f, 0.5f, // Vertex 11
-        0.35f, 0.25f, -0.35f,  0.0f, 1.0f, 0.0f,   0.375f, 0.5f, // Vertex 12
-        0.0f, 0.25f, -0.5f,    0.0f, 1.0f, 0.0f,   0.500f, 0.5f, // Vertex 13
-       -0.35f, 0.25f, -0.35f,  0.0f, 1.0f, 0.0f,   0.625f, 0.5f, // Vertex 14
-       -0.5f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,   0.750f, 0.5f, // Vertex 15
-       -0.35f, 0.25f, 0.35f,   0.0f, 1.0f, 0.0f,   0.875f, 0.5f, // Vertex 16
+        0.7f, 0.5f, 0.7f,   0.0f, 1.0f, 0.0f,   0.125f, 0.5f, // Vertex 10
+        1.0f, 0.5f, 0.0f,     0.0f, 1.0f, 0.0f,   0.250f, 0.5f, // Vertex 11
+        0.7f, 0.5f, -0.7f,  0.0f, 1.0f, 0.0f,   0.375f, 0.5f, // Vertex 12
+        0.0f, 0.5f, -1.0f,    0.0f, 1.0f, 0.0f,   0.500f, 0.5f, // Vertex 13
+       -0.7f, 0.5f, -0.7f,  0.0f, 1.0f, 0.0f,   0.625f, 0.5f, // Vertex 14
+       -1.0f, 0.5f, 0.0f,     0.0f, 1.0f, 0.0f,   0.750f, 0.5f, // Vertex 15
+       -0.7f, 0.5f, 0.7f,   0.0f, 1.0f, 0.0f,   0.875f, 0.5f, // Vertex 16
 
-        0.0f, 0.25f, 0.5f,     0.0f, 1.0f, 0.0f,   1.0f, 0.5f,   // Vertex 17 (same as the Vertex 8 to close the shape)
+        0.0f, 0.5f, 1.0f,     0.0f, 1.0f, 0.0f,   1.0f, 0.5f,   // Vertex 17 (same as the Vertex 8 to close the shape)
 
         // middle of octagon (repeated just for textures coords)
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.0625f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.1875f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.3125f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.4375f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.5625f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.6875f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.8125f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.9375f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.0625f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.1875f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.3125f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.4375f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.5625f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.6875f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.8125f, 1.0f,
+        0.0f, 0.5f, 0.0f,       0.0f, 0.0f, 0.0f,  0.9375f, 1.0f,
     };
 
     unsigned int indices[72] = {
