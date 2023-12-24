@@ -214,12 +214,12 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0, 11.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0, 17.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
