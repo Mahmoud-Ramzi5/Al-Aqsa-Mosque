@@ -1187,6 +1187,12 @@
     <ClInclude Include="Dependencies\includes\SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\assimp\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dependencies\includes\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Dependencies\includes\model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1221,9 +1227,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\assimp\color4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dependencies\includes\assimp\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\assimp\DefaultLogger.hpp">
@@ -1301,7 +1304,7 @@
     <ClInclude Include="Dependencies\includes\assimp\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\mesh.h">
+    <ClInclude Include="Dependencies\includes\assimp_glm_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1722,19 +1725,10 @@
     <None Include="Dependencies\dlls\glfw3.dll" />
     <None Include="Dependencies\dlls\SDL2.dll" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.exe" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.exe.recipe" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.ilk" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.pdb" />
-    <None Include="x64\Debug\vc143.idb" />
-    <None Include="x64\Debug\vc143.pdb" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Al-Aqsa_Mosque.lastbuildstate" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.command.1.tlog" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.read.1.tlog" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\CL.write.1.tlog" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.command.1.tlog" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.read.1.tlog" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\link.write.1.tlog" />
+    <None Include="Dependencies\includes\assimp\config.h" />
+    <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="Dependencies\includes\assimp\color4.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -1756,8 +1750,6 @@
     <None Include="Dependencies\includes\assimp\vector3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\includes\assimp\.editorconfig" />
-    <None Include="res\objects\trees\Tree.blend" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png">
@@ -1796,6 +1788,15 @@
     <Image Include="res\textures\skybox.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\objects\tree\bark_loo.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\tree\blatt1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\objects\tree\blatt1_a.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\lib\freeglut.lib" />
@@ -1809,17 +1810,5 @@
     <Library Include="Dependencies\lib\SDL2.lib" />
     <Library Include="Dependencies\lib\SDL2main.lib" />
     <Library Include="Dependencies\lib\SDL2test.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="x64\Debug\Al-Aqsa_Mosque.log" />
-    <Text Include="x64\Debug\Al-Aqsa_Mosque.vcxproj.FileListAbsolute.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="x64\Debug\Dome.obj" />
-    <Object Include="x64\Debug\glad.obj" />
-    <Object Include="x64\Debug\glm.obj" />
-    <Object Include="x64\Debug\main.obj" />
-    <Object Include="x64\Debug\Octagon.obj" />
-    <Object Include="x64\Debug\Qubli.obj" />
   </ItemGroup>
 </Project>

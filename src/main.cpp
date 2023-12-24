@@ -3,11 +3,8 @@
 #include <shader.h>
 #include <camera.h>
 #include <iostream>
-#include <windows.h>
-#include <mmsystem.h>
 #include <assert.h>
 #include <algorithm>
-#pragma comment(lib, "winmm.lib")
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 //#include <model.h>
@@ -91,7 +88,7 @@ int main(int argc, char* argv[])
 
     // load models
     // -----------
-    //Model ourModel("res/objects/trees/Tree.obj");
+    //Model ourModel("D:/U Projects/OpenGLProjects/LearnOpenGL/resources/objects/backpack/backpack.obj");
     //Model ourModel2("res/objects/trees/Tree1.3ds");
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
@@ -152,7 +149,7 @@ int main(int argc, char* argv[])
         model = glm::mat4(1.0f);
         /*
         // render the loaded model
-        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -185,7 +182,7 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         ourModel.Draw(shader);
-
+        
         // render the loaded model
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
