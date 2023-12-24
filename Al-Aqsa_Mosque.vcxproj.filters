@@ -36,11 +36,8 @@
     <ClCompile Include="src\Floor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< Updated upstream
     <ClCompile Include="src\Wall.cpp">
-=======
     <ClCompile Include="src\SkyBox.cpp">
->>>>>>> Stashed changes
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1182,9 +1179,7 @@
     <ClInclude Include="Dependencies\includes\Floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
     <ClInclude Include="Dependencies\includes\Wall.h">
-=======
     <ClInclude Include="Dependencies\includes\SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1303,7 +1298,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\mesh.h">
->>>>>>> Stashed changes
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

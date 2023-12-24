@@ -559,11 +559,8 @@
     <ClInclude Include="Dependencies\includes\Tcamera.h" />
     <ClInclude Include="Dependencies\includes\Dome.h" />
     <ClInclude Include="Dependencies\includes\Floor.h" />
-<<<<<<< Updated upstream
     <ClInclude Include="Dependencies\includes\Wall.h" />
-=======
     <ClInclude Include="Dependencies\includes\SkyBox.h" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -738,17 +735,14 @@
     <Image Include="res\textures\back.png" />
     <Image Include="res\textures\backsky.png" />
     <Image Include="res\textures\bottom.jpg" />
-<<<<<<< Updated upstream
     <Image Include="res\textures\container.jpg" />
     <Image Include="res\textures\Dome.png" />
-=======
     <Image Include="res\textures\container2.png" />
     <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\down.png" />
     <Image Include="res\textures\downsky.png" />
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
->>>>>>> Stashed changes
     <Image Include="res\textures\front.jpg" />
     <Image Include="res\textures\front.png" />
     <Image Include="res\textures\frontsky.png" />
