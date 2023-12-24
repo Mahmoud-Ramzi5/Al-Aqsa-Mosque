@@ -1,2 +1,4 @@
-﻿  Octagon.cpp
-  Al-Aqsa_Mosque.vcxproj -> D:\projects\C++Projects\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe
+﻿  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+D:\ITE\Alaqsa\Al-Aqsa-Mosque\Dependencies\includes\glad\glad.h(894): message : see previous definition of 'APIENTRY'
+  Al-Aqsa_Mosque.vcxproj -> D:\ITE\Alaqsa\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe

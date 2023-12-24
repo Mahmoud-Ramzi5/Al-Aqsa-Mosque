@@ -136,6 +136,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Octagon.cpp" />
     <ClCompile Include="src\Qubli.cpp" />
+    <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\camera.h" />
@@ -516,6 +517,7 @@
     <ClInclude Include="Dependencies\includes\stb_image.h" />
     <ClInclude Include="Dependencies\includes\Tcamera.h" />
     <ClInclude Include="Dependencies\includes\Dome.h" />
+    <ClInclude Include="Dependencies\includes\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -661,7 +663,9 @@
     <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
     <Image Include="res\textures\bottom.jpg" />
+    <Image Include="res\textures\container.jpg" />
     <Image Include="res\textures\Dome.png" />
+    <Image Include="res\textures\face.png" />
     <Image Include="res\textures\front.jpg" />
     <Image Include="res\textures\left.jpg" />
     <Image Include="res\textures\right.jpg" />

@@ -16,6 +16,7 @@
 #include <Octagon.h>
 #include <Dome.h>
 #include <Qubli.h>
+#include <Wall.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -90,6 +91,7 @@ int main(int argc, char* argv[])
     Dome D = Dome(0.35f, 50);
 
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
+    Wall W = Wall(load_RGBtexture("res/textures/container.jpg"));
 
     // render loop
     // -----------
@@ -131,6 +133,12 @@ int main(int argc, char* argv[])
         shader.use();
         glActiveTexture(GL_TEXTURE0);
 
+        for (int i = 0; i < 4; i++) {
+
+            W.DrawWall(shader.ID, i);
+        }
+
+        model = glm::mat4(1.0f);
         O.DrawOct();
         model = glm::translate(model, glm::vec3(0.0, 0.07, 0.0));
         modelLoc = glGetUniformLocation(shader.ID, "model");
@@ -140,6 +148,7 @@ int main(int argc, char* argv[])
         modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
+        
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
