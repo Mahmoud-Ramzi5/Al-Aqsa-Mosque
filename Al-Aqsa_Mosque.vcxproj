@@ -713,6 +713,7 @@
     <None Include="Dependencies\includes\glm\gtx\vector_angle.inl" />
     <None Include="Dependencies\includes\glm\gtx\vector_query.inl" />
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
+    <None Include="res\objects\trees\Tree.blend" />
     <None Include="res\shaders\Basic.shader" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.exe" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.exe.recipe" />
@@ -732,31 +733,15 @@
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
-    <Image Include="res\textures\back.png" />
-    <Image Include="res\textures\backsky.png" />
     <Image Include="res\textures\bottom.jpg" />
-    <Image Include="res\textures\container.jpg" />
-    <Image Include="res\textures\container2.png" />
     <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\down.png" />
-    <Image Include="res\textures\downsky.png" />
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
-    <Image Include="res\textures\front.png" />
-    <Image Include="res\textures\frontsky.png" />
-    <Image Include="res\textures\left.jpg" />
-    <Image Include="res\textures\left.png" />
-    <Image Include="res\textures\leftsky.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
-    <Image Include="res\textures\right.jpg" />
-    <Image Include="res\textures\right.png" />
-    <Image Include="res\textures\rightsky.png" />
     <Image Include="res\textures\Rock.png" />
-    <Image Include="res\textures\Sky.jpg" />
-    <Image Include="res\textures\sky.png" />
-    <Image Include="res\textures\Top.png" />
-    <Image Include="res\textures\upsky.png" />
+    <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\Y.png" />
   </ItemGroup>
   <ItemGroup>

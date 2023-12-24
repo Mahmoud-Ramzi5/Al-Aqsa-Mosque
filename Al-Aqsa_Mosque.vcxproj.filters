@@ -42,9 +42,6 @@
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\model_loading.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1760,6 +1757,7 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="Dependencies\includes\assimp\.editorconfig" />
+    <None Include="res\objects\trees\Tree.blend" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png">
@@ -1774,19 +1772,10 @@
     <Image Include="res\textures\front.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\left.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\right.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\Rock.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\Y.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\Top.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\Dome.png">
@@ -1795,52 +1784,16 @@
     <Image Include="res\textures\floor.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\Sky.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\upsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\rightsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\leftsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\frontsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\downsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\backsky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\container2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\face.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\sky.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\back.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\down.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\front.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\left.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\right.png">
+    <Image Include="res\textures\skybox.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

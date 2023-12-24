@@ -96,14 +96,11 @@ int main(int argc, char* argv[])
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
-    unsigned int SkyBoxFaces[6];
-    SkyBoxFaces[0] = load_RGBtexture("res/textures/down.png");
-    SkyBoxFaces[1] = load_RGBtexture("res/textures/sky.png");
-    SkyBoxFaces[2] = load_RGBtexture("res/textures/sky.png");
-    SkyBoxFaces[3] = load_RGBtexture("res/textures/sky.png");
-    SkyBoxFaces[4] = load_RGBtexture("res/textures/sky.png");
-    SkyBoxFaces[5] = load_RGBtexture("res/textures/sky.png");
-
+    unsigned int SkyBoxFaces[3]{
+        load_RGBtexture("res/textures/sky.png"),
+        load_RGBtexture("res/textures/skybox.png"),
+        load_RGBtexture("res/textures/down.png")
+    };
 
     SkyBox S = SkyBox(SkyBoxFaces);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
@@ -111,7 +108,6 @@ int main(int argc, char* argv[])
     Dome D2 = Dome(0.35f, 50);
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
-
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
 
     // render loop
