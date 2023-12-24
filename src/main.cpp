@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
     Dome D = Dome(0.75f, 50);
     Dome D2 = Dome(0.35f, 50);
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
-    Wall W = Wall(load_RGBtexture("res/textures/container.jpg"));
+    Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
 
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
 
@@ -151,13 +151,9 @@ int main(int argc, char* argv[])
         unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-        for (int i = 0; i < 4; i++) {
 
-            W.DrawWall(shader.ID, i);
-        }
 
         model = glm::mat4(1.0f);
-        shader.use();
         /*
         // render the loaded model
         glm::mat4 model = glm::mat4(1.0f);
@@ -223,13 +219,17 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.9f, 0.0, 0.25));
-        modelLoc = glGetUniformLocation(shader.ID, "model");
+        model = glm::translate(model, glm::vec3(0.0f, 0.0, 11.0f));
+        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
 
 
-        
+        for (int i = 0; i < 4; i++) {
+            W.DrawWall(shader.ID, i);
+        }
+
+
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
