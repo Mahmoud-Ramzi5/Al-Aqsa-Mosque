@@ -10,13 +10,15 @@
 #pragma comment(lib, "winmm.lib")
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+//#include <model.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <SkyBox.h>
 #include <Octagon.h>
 #include <Dome.h>
 #include <Qubli.h>
-#include<Floor.h>
+#include <Floor.h>
 #include <Wall.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -85,9 +87,25 @@ int main(int argc, char* argv[])
     glEnable(GL_DEPTH_TEST);
 
     Shader shader = Shader("res/shaders/Basic.shader");
-
     shader.use();
+
+    // load models
+    // -----------
+    //Model ourModel("res/objects/trees/Tree.obj");
+    //Model ourModel2("res/objects/trees/Tree1.3ds");
+
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
+
+    unsigned int SkyBoxFaces[6];
+    SkyBoxFaces[0] = load_RGBtexture("res/textures/down.png");
+    SkyBoxFaces[1] = load_RGBtexture("res/textures/sky.png");
+    SkyBoxFaces[2] = load_RGBtexture("res/textures/sky.png");
+    SkyBoxFaces[3] = load_RGBtexture("res/textures/sky.png");
+    SkyBoxFaces[4] = load_RGBtexture("res/textures/sky.png");
+    SkyBoxFaces[5] = load_RGBtexture("res/textures/sky.png");
+
+
+    SkyBox S = SkyBox(SkyBoxFaces);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 50);
     Dome D2 = Dome(0.35f, 50);
@@ -118,7 +136,6 @@ int main(int argc, char* argv[])
         // Use the shader program
         shader.use();
 
-        glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
         // pass projection matrix to shader (note that in this case it could change every frame)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         unsigned int projLoc = glGetUniformLocation(shader.ID, "projection");
@@ -129,12 +146,10 @@ int main(int argc, char* argv[])
         unsigned int viewLoc = glGetUniformLocation(shader.ID, "view");
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-
+        glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
         model = glm::translate(model, glm::vec3(0.0, 0.0, 0.0));
         unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        shader.use();
-        glActiveTexture(GL_TEXTURE0);
 
         for (int i = 0; i < 4; i++) {
 
@@ -142,15 +157,69 @@ int main(int argc, char* argv[])
         }
 
         model = glm::mat4(1.0f);
+        shader.use();
+        /*
+        // render the loaded model
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(15.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        model = glm::rotate(model, 90.0f, glm::vec3(-1.3f, 0.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        ourModel2.Draw(shader);
+        */
+
+        glActiveTexture(GL_TEXTURE0);
+        f.DrawFloor();
+        S.DrawSkyBox();
+
+
+        model = glm::mat4(1.0f);
+        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0, 0.07, 0.0));
-        modelLoc = glGetUniformLocation(shader.ID, "model");
+        model = glm::translate(model, glm::vec3(0.0f, 0.3f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.8f, 1.8f, 1.8f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.5f, 0.0, 0.0));
-        modelLoc = glGetUniformLocation(shader.ID, "model");
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 10.0f));
+        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
         model = glm::mat4(1.0f);
@@ -160,7 +229,7 @@ int main(int argc, char* argv[])
         D2.DrawDome();
 
 
-        f.DrawFloor();
+        
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);

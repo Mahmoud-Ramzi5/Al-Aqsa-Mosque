@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
+    <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Dome.cpp" />
     <ClCompile Include="src\glad.c" />
@@ -140,6 +141,43 @@
     <ClCompile Include="src\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dependencies\includes\assimp\ai_assert.h" />
+    <ClInclude Include="Dependencies\includes\assimp\anim.h" />
+    <ClInclude Include="Dependencies\includes\assimp\camera.h" />
+    <ClInclude Include="Dependencies\includes\assimp\cexport.h" />
+    <ClInclude Include="Dependencies\includes\assimp\cfileio.h" />
+    <ClInclude Include="Dependencies\includes\assimp\cimport.h" />
+    <ClInclude Include="Dependencies\includes\assimp\color4.h" />
+    <ClInclude Include="Dependencies\includes\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="Dependencies\includes\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="Dependencies\includes\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="Dependencies\includes\assimp\config.h" />
+    <ClInclude Include="Dependencies\includes\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\defs.h" />
+    <ClInclude Include="Dependencies\includes\assimp\Exporter.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\Importer.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\importerdesc.h" />
+    <ClInclude Include="Dependencies\includes\assimp\IOStream.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\IOSystem.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\light.h" />
+    <ClInclude Include="Dependencies\includes\assimp\Logger.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\LogStream.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\material.h" />
+    <ClInclude Include="Dependencies\includes\assimp\matrix3x3.h" />
+    <ClInclude Include="Dependencies\includes\assimp\matrix4x4.h" />
+    <ClInclude Include="Dependencies\includes\assimp\mesh.h" />
+    <ClInclude Include="Dependencies\includes\assimp\metadata.h" />
+    <ClInclude Include="Dependencies\includes\assimp\NullLogger.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="Dependencies\includes\assimp\postprocess.h" />
+    <ClInclude Include="Dependencies\includes\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="Dependencies\includes\assimp\quaternion.h" />
+    <ClInclude Include="Dependencies\includes\assimp\scene.h" />
+    <ClInclude Include="Dependencies\includes\assimp\texture.h" />
+    <ClInclude Include="Dependencies\includes\assimp\types.h" />
+    <ClInclude Include="Dependencies\includes\assimp\vector2.h" />
+    <ClInclude Include="Dependencies\includes\assimp\vector3.h" />
+    <ClInclude Include="Dependencies\includes\assimp\version.h" />
     <ClInclude Include="Dependencies\includes\camera.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3.h" />
@@ -434,6 +472,8 @@
     <ClInclude Include="Dependencies\includes\GL\glxew.h" />
     <ClInclude Include="Dependencies\includes\GL\wglew.h" />
     <ClInclude Include="Dependencies\includes\KHR\khrplatform.h" />
+    <ClInclude Include="Dependencies\includes\mesh.h" />
+    <ClInclude Include="Dependencies\includes\model.h" />
     <ClInclude Include="Dependencies\includes\Octagon.h" />
     <ClInclude Include="Dependencies\includes\Qubli.h" />
     <ClInclude Include="Dependencies\includes\SDL\begin_code.h" />
@@ -519,7 +559,11 @@
     <ClInclude Include="Dependencies\includes\Tcamera.h" />
     <ClInclude Include="Dependencies\includes\Dome.h" />
     <ClInclude Include="Dependencies\includes\Floor.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="Dependencies\includes\Wall.h" />
+=======
+    <ClInclude Include="Dependencies\includes\SkyBox.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -528,6 +572,14 @@
     <None Include="Dependencies\dlls\glew32mx.dll" />
     <None Include="Dependencies\dlls\glfw3.dll" />
     <None Include="Dependencies\dlls\SDL2.dll" />
+    <None Include="Dependencies\includes\assimp\.editorconfig" />
+    <None Include="Dependencies\includes\assimp\color4.inl" />
+    <None Include="Dependencies\includes\assimp\material.inl" />
+    <None Include="Dependencies\includes\assimp\matrix3x3.inl" />
+    <None Include="Dependencies\includes\assimp\matrix4x4.inl" />
+    <None Include="Dependencies\includes\assimp\quaternion.inl" />
+    <None Include="Dependencies\includes\assimp\vector2.inl" />
+    <None Include="Dependencies\includes\assimp\vector3.inl" />
     <None Include="Dependencies\includes\glm\detail\func_common.inl" />
     <None Include="Dependencies\includes\glm\detail\func_common_simd.inl" />
     <None Include="Dependencies\includes\glm\detail\func_exponential.inl" />
@@ -683,14 +735,35 @@
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
+    <Image Include="res\textures\back.png" />
+    <Image Include="res\textures\backsky.png" />
     <Image Include="res\textures\bottom.jpg" />
+<<<<<<< Updated upstream
     <Image Include="res\textures\container.jpg" />
     <Image Include="res\textures\Dome.png" />
+=======
+    <Image Include="res\textures\container2.png" />
+    <Image Include="res\textures\Dome.png" />
+    <Image Include="res\textures\down.png" />
+    <Image Include="res\textures\downsky.png" />
+    <Image Include="res\textures\face.png" />
+    <Image Include="res\textures\floor.jpg" />
+>>>>>>> Stashed changes
     <Image Include="res\textures\front.jpg" />
+    <Image Include="res\textures\front.png" />
+    <Image Include="res\textures\frontsky.png" />
     <Image Include="res\textures\left.jpg" />
+    <Image Include="res\textures\left.png" />
+    <Image Include="res\textures\leftsky.png" />
+    <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\right.jpg" />
+    <Image Include="res\textures\right.png" />
+    <Image Include="res\textures\rightsky.png" />
     <Image Include="res\textures\Rock.png" />
+    <Image Include="res\textures\Sky.jpg" />
+    <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\Top.png" />
+    <Image Include="res\textures\upsky.png" />
     <Image Include="res\textures\Y.png" />
   </ItemGroup>
   <ItemGroup>
