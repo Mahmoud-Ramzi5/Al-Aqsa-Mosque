@@ -736,7 +736,6 @@
     <Image Include="res\textures\backsky.png" />
     <Image Include="res\textures\bottom.jpg" />
     <Image Include="res\textures\container.jpg" />
-    <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\container2.png" />
     <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\down.png" />

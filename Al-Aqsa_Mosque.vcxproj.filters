@@ -37,7 +37,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Wall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\SkyBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model_loading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1180,6 +1185,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\Wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Dependencies\includes\SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1861,11 +1868,5 @@
     <Object Include="x64\Debug\main.obj" />
     <Object Include="x64\Debug\Octagon.obj" />
     <Object Include="x64\Debug\Qubli.obj" />
-    <Image Include="res\textures\face.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\container.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
 </Project>
