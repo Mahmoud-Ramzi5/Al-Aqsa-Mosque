@@ -1,4 +1,4 @@
-#include "Octagon.h"
+#include "Classes/Octagon.h"
 #include<glad/glad.h>
 
 Octagon::Octagon(unsigned int texture) {

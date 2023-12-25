@@ -11,12 +11,12 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <SkyBox.h>
-#include <Octagon.h>
-#include <Dome.h>
-#include <Qubli.h>
-#include <Floor.h>
-#include <Wall.h>
+#include <Classes/SkyBox.h>
+#include <Classes/Octagon.h>
+#include <Classes/Dome.h>
+#include <Classes/Qubli.h>
+#include <Classes/Floor.h>
+#include <Classes/Wall.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);

@@ -1,4 +1,4 @@
-#include "Qubli.h"
+#include "Classes/Qubli.h"
 #include<glad/glad.h>
 
 Qubli::Qubli(unsigned int texture) {

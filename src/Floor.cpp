@@ -1,4 +1,4 @@
-#include "Floor.h"
+#include "Classes/Floor.h"
 #include<glad/glad.h>
 Floor::Floor(unsigned int texture) {
     glGenVertexArrays(1, &VAO);

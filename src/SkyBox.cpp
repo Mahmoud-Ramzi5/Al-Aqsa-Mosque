@@ -1,4 +1,4 @@
-#include "SkyBox.h"
+#include "Classes/SkyBox.h"
 #include<glad/glad.h>
 
 SkyBox::SkyBox(unsigned int texture[3]) {

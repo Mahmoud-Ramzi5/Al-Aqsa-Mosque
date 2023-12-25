@@ -1166,25 +1166,25 @@
     <ClInclude Include="Dependencies\includes\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Octagon.h">
+    <ClInclude Include="Dependencies\includes\Classes\Octagon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\Tcamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Dome.h">
+    <ClInclude Include="Dependencies\includes\Classes\Dome.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Qubli.h">
+    <ClInclude Include="Dependencies\includes\Classes\Qubli.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Floor.h">
+    <ClInclude Include="Dependencies\includes\Classes\Floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Wall.h">
+    <ClInclude Include="Dependencies\includes\Classes\Wall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\SkyBox.h">
+    <ClInclude Include="Dependencies\includes\Classes\SkyBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\assimp\config.h">
