@@ -14,9 +14,7 @@ class Shader {
 	    unsigned int ID;
 	    string VertexSource;
 	    string FragmentSource;
-        Shader() {
-
-        }
+        Shader() {}
         Shader(string source) {
             ParseShader(source);
             unsigned int shader = CreateShader(VertexSource,FragmentSource);

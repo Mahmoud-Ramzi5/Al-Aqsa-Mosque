@@ -42,7 +42,7 @@
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sun.cpp">
+    <ClCompile Include="src\Sun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1373,7 +1373,7 @@
     <ClInclude Include="Dependencies\includes\irrKlang\irrKlang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Sun.h">
+    <ClInclude Include="Dependencies\includes\Classes\Sun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\Player.h">

@@ -1,5 +1,5 @@
-#include "Sun.h"
-#include<glad/glad.h>
+#include "Classes/Sun.h"
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -25,6 +25,7 @@ Sun::Sun(float radius, int numSegments) {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
     glEnableVertexAttribArray(0);
 
+    // reuturn to default Bufferss
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
@@ -34,7 +35,7 @@ void Sun::DrawSun() {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_FAN, 0, SunVertices.size());
 }
-GLuint Sun::getShaderId() {
+unsigned int Sun::getShaderId() {
     return sunShader.ID;
 }
 

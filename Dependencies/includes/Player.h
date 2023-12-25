@@ -16,9 +16,7 @@ public:
 	glm::vec3 Position;
 	Model Pmodel;
 
-	Player() {
-
-	}
+	Player() {}
 
 	Player(glm::vec3 position, std::string player) {
 		Position = position;

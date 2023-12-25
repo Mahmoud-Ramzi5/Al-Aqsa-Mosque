@@ -139,7 +139,7 @@
     <ClCompile Include="src\Octagon.cpp" />
     <ClCompile Include="src\Qubli.cpp" />
     <ClCompile Include="src\Wall.cpp" />
-    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="src\Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\assimp\ai_assert.h" />
@@ -584,7 +584,7 @@
     <ClInclude Include="Dependencies\includes\Classes\Floor.h" />
     <ClInclude Include="Dependencies\includes\Classes\Wall.h" />
     <ClInclude Include="Dependencies\includes\Classes\SkyBox.h" />
-    <ClInclude Include="Dependencies\includes\Sun.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Sun.h" />
     <ClInclude Include="Dependencies\includes\Player.h" />
   </ItemGroup>
   <ItemGroup>
