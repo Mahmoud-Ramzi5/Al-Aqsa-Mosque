@@ -17,6 +17,7 @@
 #include <Classes/Qubli.h>
 #include <Classes/Floor.h>
 #include <Classes/Wall.h>
+#include<Sun.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -84,7 +85,7 @@ int main(int argc, char* argv[])
     glEnable(GL_DEPTH_TEST);
 
     Shader shader = Shader("res/shaders/Basic.shader");
-    shader.use();
+    
 
     // load models
     // -----------
@@ -105,7 +106,8 @@ int main(int argc, char* argv[])
     Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
-
+    Sun sun = Sun(3.55f, 50);
+    
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -181,6 +183,16 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Tree1.Draw(shader);
 
+       glUseProgram(sun.getShaderId());
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-7.0f, 25.0, 15.0f));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+        sun.DrawSun();
+
+        
+         
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

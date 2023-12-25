@@ -139,6 +139,7 @@
     <ClCompile Include="src\Octagon.cpp" />
     <ClCompile Include="src\Qubli.cpp" />
     <ClCompile Include="src\Wall.cpp" />
+    <ClCompile Include="Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\assimp\ai_assert.h" />
@@ -583,6 +584,7 @@
     <ClInclude Include="Dependencies\includes\Classes\Floor.h" />
     <ClInclude Include="Dependencies\includes\Classes\Wall.h" />
     <ClInclude Include="Dependencies\includes\Classes\SkyBox.h" />
+    <ClInclude Include="Dependencies\includes\Sun.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -740,6 +742,7 @@
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
     <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="res\shaders\Basic.shader" />
+    <None Include="res\shaders\light.shader" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
   </ItemGroup>
   <ItemGroup>
