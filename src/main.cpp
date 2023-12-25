@@ -6,8 +6,8 @@
 #include <assert.h>
 #include <algorithm>
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-//#include <model.h>
+//#include "stb_image.h"
+#include <model.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
@@ -88,8 +88,7 @@ int main(int argc, char* argv[])
 
     // load models
     // -----------
-    //Model ourModel("D:/U Projects/OpenGLProjects/LearnOpenGL/resources/objects/backpack/backpack.obj");
-    //Model ourModel2("res/objects/trees/Tree1.3ds");
+    Model Tree1("res/objects/trees/Tree.obj");
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
@@ -143,56 +142,9 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(0.0, 0.0, 0.0));
         unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-
-
-        model = glm::mat4(1.0f);
-        /*
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel.Draw(shader);
-
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel.Draw(shader);
-
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(8.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel.Draw(shader);
-
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(15.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel.Draw(shader);
-
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(12.5f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel.Draw(shader);
-        
-        // render the loaded model
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-        model = glm::rotate(model, 90.0f, glm::vec3(-1.3f, 0.0f, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        ourModel2.Draw(shader);
-        */
-
         glActiveTexture(GL_TEXTURE0);
+
+        // Start Drawing
         f.DrawFloor();
         S.DrawSkyBox();
 
@@ -221,6 +173,13 @@ int main(int argc, char* argv[])
         for (int i = 0; i < 4; i++) {
             W.DrawWall(shader.ID, i);
         }
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

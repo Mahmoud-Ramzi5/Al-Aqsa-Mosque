@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -472,6 +472,27 @@
     <ClInclude Include="Dependencies\includes\GL\glew.h" />
     <ClInclude Include="Dependencies\includes\GL\glxew.h" />
     <ClInclude Include="Dependencies\includes\GL\wglew.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ESoundEngineOptions.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ESoundOutputDrivers.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_EStreamModes.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IAudioRecorder.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IAudioStream.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IAudioStreamLoader.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IFileFactory.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IFileReader.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IRefCounted.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_irrKlangTypes.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISound.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundDeviceList.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundEffectControl.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundEngine.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundMixedOutputReceiver.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundSource.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_ISoundStopEventReceiver.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_IVirtualRefCounted.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_SAudioStreamFormat.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\ik_vec3d.h" />
+    <ClInclude Include="Dependencies\includes\irrKlang\irrKlang.h" />
     <ClInclude Include="Dependencies\includes\KHR\khrplatform.h" />
     <ClInclude Include="Dependencies\includes\mesh.h" />
     <ClInclude Include="Dependencies\includes\model.h" />
@@ -565,10 +586,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include="Dependencies\dlls\assimp-vc140-mt.dll" />
     <None Include="Dependencies\dlls\freeglut.dll" />
     <None Include="Dependencies\dlls\glew32.dll" />
     <None Include="Dependencies\dlls\glew32mx.dll" />
     <None Include="Dependencies\dlls\glfw3.dll" />
+    <None Include="Dependencies\dlls\ikpMP3.dll" />
+    <None Include="Dependencies\dlls\irrKlang.dll" />
     <None Include="Dependencies\dlls\SDL2.dll" />
     <None Include="Dependencies\includes\assimp\color4.inl" />
     <None Include="Dependencies\includes\assimp\config.h" />
@@ -716,8 +740,6 @@
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
     <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="res\shaders\Basic.shader" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.exe" />
-    <None Include="x64\Debug\Al-Aqsa_Mosque.ilk" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
   </ItemGroup>
   <ItemGroup>
@@ -733,11 +755,12 @@
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
-    <Image Include="res\textures\Rock.png" />
+    <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\Y.png" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="Dependencies\lib\assimp.lib" />
     <Library Include="Dependencies\lib\freeglut.lib" />
     <Library Include="Dependencies\lib\glew32.lib" />
     <Library Include="Dependencies\lib\glew32mx.lib" />
@@ -746,9 +769,11 @@
     <Library Include="Dependencies\lib\glfw3.lib" />
     <Library Include="Dependencies\lib\glfw3dll.lib" />
     <Library Include="Dependencies\lib\glfw3_mt.lib" />
+    <Library Include="Dependencies\lib\irrKlang.lib" />
     <Library Include="Dependencies\lib\SDL2.lib" />
     <Library Include="Dependencies\lib\SDL2main.lib" />
     <Library Include="Dependencies\lib\SDL2test.lib" />
+    <Library Include="Dependencies\lib\SOIL.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
