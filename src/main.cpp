@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
     // load models
     // -----------
     Model Tree1("res/objects/trees/Tree.obj");
-    player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/cat/12222_Cat_v1_l3.obj");
+    player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
