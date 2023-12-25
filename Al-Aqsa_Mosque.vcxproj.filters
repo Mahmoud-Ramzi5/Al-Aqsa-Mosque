@@ -1376,6 +1376,9 @@
     <ClInclude Include="Dependencies\includes\Sun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1866,6 +1869,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\sky.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\fullwall.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

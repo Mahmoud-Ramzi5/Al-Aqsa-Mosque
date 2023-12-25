@@ -24,6 +24,7 @@ const float SENSITIVITY = 0.1f;
 const float DISTANCE = 5.0f;
 const float ZOOM = 45.0f;
 
+bool is_FPS = true;
 
 
 // An abstract camera class that processes input and calculates the corresponding Euler Angles, Vectors and Matrices for use in OpenGL
@@ -68,8 +69,13 @@ public:
 
     // returns the view matrix calculated using Euler Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix()
-    { 
-        return glm::lookAt(Position, PlayerPos, Up);
+    {   
+        if (is_FPS) {
+            return glm::lookAt(Position, Position + Front, Up);
+        }
+        else {
+            return glm::lookAt(Position, PlayerPos, Up);
+        }
     }
 
     glm::vec3 GetCameraPos()
@@ -94,21 +100,43 @@ public:
 
 
         if (direction == FORWARD) {
-            PlayerPos += Front * velocity;
+            if (is_FPS) {
+                Position += Front * velocity;
+            }
+            else {
+                PlayerPos += Front * velocity;
+            }
         }
         if (direction == BACKWARD) {
-            PlayerPos -= Front * velocity;
-
+            if (is_FPS) {
+                Position -= Front * velocity;
+            }
+            else {
+                PlayerPos -= Front * velocity;
+            }
         }
         if (direction == LEFT) {
-            PlayerPos -= Right * velocity;
+            if (is_FPS) {
+                Position -= Right * velocity;
+            }
+            else {
+                PlayerPos -= Right * velocity;
+            }
         }
         if (direction == RIGHT) {
-            PlayerPos += Right * velocity;    
+            if (is_FPS) {
+                Position += Right * velocity;
+            }
+            else {
+                PlayerPos += Right * velocity;
+            }
         }
-        Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
-
-
+        if (is_FPS) {
+            Position.y = 0.4f;
+        }
+        else {
+            Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
+        }
     }
 
     // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
@@ -123,11 +151,18 @@ public:
         // make sure that when pitch is out of bounds, screen doesn't get flipped
         if (constrainPitch)
         {
-            if (Pitch > PITCH)
-                Pitch = PITCH;
-            if (Pitch < PITCH)
-                Pitch = PITCH;
-
+            if (is_FPS) {
+                if (Pitch > 89.0f)
+                    Pitch = 89.0f;
+                if (Pitch < -89.0f)
+                    Pitch = -89.0f;
+            }
+            else {
+                if (Pitch > PITCH)
+                    Pitch = PITCH;
+                if (Pitch < PITCH)
+                    Pitch = PITCH;
+            }
         }
 
         // update Front, Right and Up Vectors using the updated Euler angles
@@ -154,7 +189,9 @@ private:
         front.y = sin(glm::radians(Pitch));
         front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
         Front = glm::normalize(front);
-        Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
+        if (!is_FPS) {
+            Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
+        }
         // also re-calculate the Right and Up vector
         Right = glm::normalize(glm::cross(Front, WorldUp));  // normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
         Up = glm::normalize(glm::cross(Right, Front));

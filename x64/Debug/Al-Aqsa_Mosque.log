@@ -1,5 +1,2 @@
-﻿  Sun.cpp
-D:\Al-Aqsa-Mosque\Sun.cpp(35,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  main.cpp
-  Generating Code...
-  Al-Aqsa_Mosque.vcxproj -> D:\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe
+﻿  main.cpp
+  Al-Aqsa_Mosque.vcxproj -> D:\U Projects\OpenGLProjects\Al-Aqsa_Mosque\x64\Debug\Al-Aqsa_Mosque.exe

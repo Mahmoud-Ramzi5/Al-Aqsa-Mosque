@@ -1,7 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <shader.h>
-#include <camera.h>
+#include <Tcamera.h>
 #include <iostream>
 #include <assert.h>
 #include <algorithm>
@@ -11,6 +11,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <Player.h>
 #include <Classes/SkyBox.h>
 #include <Classes/Octagon.h>
 #include <Classes/Dome.h>
@@ -19,7 +20,9 @@
 #include <Classes/Wall.h>
 #include<Sun.h>
 
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 unsigned int load_RGBtexture(const char* source);
@@ -31,7 +34,8 @@ const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.4f, 4.0f));
+Player player;
+Camera camera;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -66,6 +70,7 @@ int main(int argc, char* argv[])
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
@@ -90,6 +95,8 @@ int main(int argc, char* argv[])
     // load models
     // -----------
     Model Tree1("res/objects/trees/Tree.obj");
+    player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/cat/12222_Cat_v1_l3.obj");
+    camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
@@ -103,7 +110,7 @@ int main(int argc, char* argv[])
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 50);
     Dome D2 = Dome(0.35f, 50);
-    Qubli Q = Qubli(load_RGBAtexture("res/textures/Top.png"));
+    Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Sun sun = Sun(3.55f, 50);
@@ -192,7 +199,15 @@ int main(int argc, char* argv[])
         sun.DrawSun();
 
         
-         
+        shader.use();
+        
+        if (is_FPS) {
+            player.DrawPlayer(shader, glm::vec3(0.0f, 0.0f, 0.0f));
+        }
+        else {
+            player.DrawPlayer(shader, camera.GetPlayerPos());
+        }
+        
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -212,6 +227,7 @@ void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+
 
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
         camera.ProcessKeyboard(LEFT_SHIFT, deltaTime);
@@ -234,6 +250,19 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
+// glfw: whenever a key is pressed, this callback is called
+// -------------------------------------------------------
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS) {
+        if (is_FPS) {
+            is_FPS = false;
+        }
+        else {
+            is_FPS = true;
+        }
+    }
+}
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------

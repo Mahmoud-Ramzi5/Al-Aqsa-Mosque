@@ -32,6 +32,11 @@ public:
     string directory;
     bool gammaCorrection;
 
+    Model()
+    {
+
+    }
+
     // constructor, expects a filepath to a 3D model.
     Model(string const &path, bool gamma = false) : gammaCorrection(gamma)
     {

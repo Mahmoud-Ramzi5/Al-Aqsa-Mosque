@@ -585,6 +585,7 @@
     <ClInclude Include="Dependencies\includes\Classes\Wall.h" />
     <ClInclude Include="Dependencies\includes\Classes\SkyBox.h" />
     <ClInclude Include="Dependencies\includes\Sun.h" />
+    <ClInclude Include="Dependencies\includes\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -757,6 +758,7 @@
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
+    <Image Include="res\textures\fullwall.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />

@@ -1,5 +1,5 @@
 #include "Classes/Qubli.h"
-#include<glad/glad.h>
+#include <glad/glad.h>
 
 Qubli::Qubli(unsigned int texture) {
 
@@ -43,6 +43,6 @@ unsigned int* Qubli::GetIndices() {
 void Qubli::DrawQubli()
 {
     glBindVertexArray(VAO);
-   // glBindTexture(GL_TEXTURE_2D, textureQubli);
-    glDrawElements(GL_TRIANGLES, 64, GL_UNSIGNED_INT, 0);
+    glBindTexture(GL_TEXTURE_2D, textureQubli);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
