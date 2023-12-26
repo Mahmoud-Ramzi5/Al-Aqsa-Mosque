@@ -48,6 +48,9 @@
     <ClCompile Include="src\Building.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Skyscrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1385,6 +1388,9 @@
     <ClInclude Include="Dependencies\includes\Classes\Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1881,6 +1887,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\fullbuilding.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\grass.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\full skyscrapper.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -50,5 +50,3 @@ public:
     unsigned int* GetIndices();
     void DrawBuilding();
 };
-#pragma once
-#pragma once

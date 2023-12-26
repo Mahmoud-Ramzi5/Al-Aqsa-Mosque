@@ -139,6 +139,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Octagon.cpp" />
     <ClCompile Include="src\Qubli.cpp" />
+    <ClCompile Include="src\Skyscrapper.cpp" />
     <ClCompile Include="src\Wall.cpp" />
     <ClCompile Include="src\Sun.cpp" />
   </ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="Dependencies\includes\assimp_glm_helpers.h" />
     <ClInclude Include="Dependencies\includes\camera.h" />
     <ClInclude Include="Dependencies\includes\Classes\Building.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3native.h" />
@@ -760,8 +762,10 @@
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
+    <Image Include="res\textures\full skyscrapper.png" />
     <Image Include="res\textures\fullbuilding.png" />
     <Image Include="res\textures\fullwall.png" />
+    <Image Include="res\textures\grass.jpg" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
