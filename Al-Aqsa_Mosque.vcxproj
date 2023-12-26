@@ -760,6 +760,7 @@
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
+    <Image Include="res\textures\fullbuilding.png" />
     <Image Include="res\textures\fullwall.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\sky.png" />

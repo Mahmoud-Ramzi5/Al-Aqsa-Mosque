@@ -40,7 +40,7 @@ unsigned int* Building::GetIndices() {
     return indices;
 }
 
-void Building::DrawQubli()
+void Building::DrawBuilding()
 {
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureBuilding);

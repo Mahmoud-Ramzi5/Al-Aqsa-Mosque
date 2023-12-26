@@ -18,6 +18,7 @@
 #include <Classes/Qubli.h>
 #include <Classes/Floor.h>
 #include <Classes/Wall.h>
+#include <Classes/Building.h>
 #include <Classes/Sun.h>
 
 
@@ -94,7 +95,9 @@ int main(int argc, char* argv[])
 
     // load models
     // -----------
-    Model Tree1("res/objects/trees/Tree.obj");
+    Model Tree1("res/objects/trees/tree1/Tree.obj");
+    Model Building1("res/objects/City Apartment Building.glb");
+    
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
 
@@ -112,6 +115,7 @@ int main(int argc, char* argv[])
     Dome D2 = Dome(0.35f, 50);
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
+    Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Sun sun = Sun(3.55f, 50);
 
@@ -154,7 +158,12 @@ int main(int argc, char* argv[])
         glActiveTexture(GL_TEXTURE0);
 
         // Start Drawing
+        model = glm::mat4(1.0f);
+        model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         f.DrawFloor();
+        model = glm::mat4(1.0f);
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         S.DrawSkyBox();
 
 
@@ -178,15 +187,89 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(5.4f, 5.4f, 5.4f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
+        //making some Buildings
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.0f, 0.0f, 27.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-12.0f, 0.0f, 27.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
+        
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(24.0f, 0.0f, 27.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
+        
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-24.0f, 0.0f, 27.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(29.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-29.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        B.DrawBuilding();
+        
+        //drawig the wall
         for (int i = 0; i < 4; i++) {
             W.DrawWall(shader.ID, i);
         }
 
         // render the loaded model
         model = glm::mat4(1.0f);
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Building1.Draw(shader);
+
+        // render the loaded model
+        model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
+        //more trees!!!!!!!!:)
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, 20.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-7.0f, 0.0f, 20.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, -20.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Tree1.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-7.0f, 0.0f, -20.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Tree1.Draw(shader);

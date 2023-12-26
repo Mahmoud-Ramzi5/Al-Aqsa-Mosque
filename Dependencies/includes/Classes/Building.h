@@ -10,15 +10,15 @@ public:
         //Building
         // positions          // colors          // texture coords
         -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 0.0f,
-         0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.304f, 0.0f,
-         0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.592f, 0.0f,
-        -0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.712f, 0.0f,
+         0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.267f, 0.0f,
+         0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.498f, 0.0f,
+        -0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.769f, 0.0f,
 
         // positions          // colors         // texture coords
         -0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 1.0f,
-         0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.304f, 1.0f,
-         0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,    0.592f, 1.0f,
-        -0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,    0.712f, 1.0f,
+         0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,     0.267f, 1.0f,
+         0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,    0.498f, 1.0f,
+        -0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,   0.769f, 1.0f,
 
         -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
         -0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 1.0f,
@@ -48,7 +48,7 @@ public:
     Building(unsigned int texture);
     float* GetVertices();
     unsigned int* GetIndices();
-    void DrawQubli();
+    void DrawBuilding();
 };
 #pragma once
 #pragma once
