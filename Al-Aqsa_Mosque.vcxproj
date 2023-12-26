@@ -185,6 +185,7 @@
     <ClInclude Include="Dependencies\includes\camera.h" />
     <ClInclude Include="Dependencies\includes\Classes\Building.h" />
     <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Sun.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3native.h" />
@@ -503,6 +504,7 @@
     <ClInclude Include="Dependencies\includes\model.h" />
     <ClInclude Include="Dependencies\includes\Classes\Octagon.h" />
     <ClInclude Include="Dependencies\includes\Classes\Qubli.h" />
+    <ClInclude Include="Dependencies\includes\Player.h" />
     <ClInclude Include="Dependencies\includes\SDL\begin_code.h" />
     <ClInclude Include="Dependencies\includes\SDL\close_code.h" />
     <ClInclude Include="Dependencies\includes\SDL\SDL.h" />
@@ -588,8 +590,6 @@
     <ClInclude Include="Dependencies\includes\Classes\Floor.h" />
     <ClInclude Include="Dependencies\includes\Classes\Wall.h" />
     <ClInclude Include="Dependencies\includes\Classes\SkyBox.h" />
-    <ClInclude Include="Dependencies\includes\Classes\Sun.h" />
-    <ClInclude Include="Dependencies\includes\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

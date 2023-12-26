@@ -1,4 +1,7 @@
 #pragma once
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class Qubli
 {
@@ -6,22 +9,30 @@ public:
     unsigned int VBO, VAO, EBO;
     unsigned int textureQubli;
 
+    struct vertex {
+        glm::vec3 positions;
+        glm::vec3 normal;
+        glm::vec2 texture;
+    };
+    vertex vertice[10];
+    
+
     float vertices[80] = {
         //masjid
         // positions          // colors          // texture coords
-        -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 0.0f,  
-         0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.304f, 0.0f,
-         0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.592f, 0.0f,
-        -0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.712f, 0.0f,
+        -0.5f, 0.0f, -0.7f,     0.0f, 0.0f, -1.0f,    0.0f, 0.0f,  
+         0.5f, 0.0f, -0.7f,     0.0f, 0.0f, -1.0f,    0.304f, 0.0f,
+         0.5f, 0.0f , 0.7f,     0.0f, 0.0f, -1.0f,    0.592f, 0.0f,
+        -0.5f, 0.0f , 0.7f,     0.0f, 0.0f, -1.0f,    0.712f, 0.0f,
 
         // positions          // colors         // texture coords
-        -0.5f, 0.2f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 1.0f,  
-         0.5f, 0.2f, -0.7f,     0.0f, 1.0f, 0.0f,    0.304f, 1.0f,
-         0.5f, 0.2f,  0.7f,     0.0f, 1.0f, 0.0f,    0.592f, 1.0f,
-        -0.5f, 0.2f,  0.7f,     0.0f, 1.0f, 0.0f,    0.712f, 1.0f,
+        -0.5f, 0.2f, -0.7f,     1.0f, 0.0f, 0.0f,    0.0f, 1.0f,  
+         0.5f, 0.2f, -0.7f,     1.0f, 0.0f, 0.0f,    0.304f, 1.0f,
+         0.5f, 0.2f,  0.7f,     1.0f, 0.0f, 0.0f,    0.592f, 1.0f,
+        -0.5f, 0.2f,  0.7f,     1.0f, 0.0f, 0.0f,    0.712f, 1.0f,
         
-        -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
-        -0.5f, 0.2f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 1.0f,
+        -0.5f, 0.0f, -0.7f,     0.0f, 0.0f, -1.0f,    1.0f, 0.0f,
+        -0.5f, 0.2f, -0.7f,     1.0f, 0.0f, 0.0f,    1.0f, 1.0f,
     };
 
     unsigned int indices[36] = {

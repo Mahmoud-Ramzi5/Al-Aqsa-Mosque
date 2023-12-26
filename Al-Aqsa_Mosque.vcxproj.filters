@@ -42,10 +42,10 @@
     <ClCompile Include="src\SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Sun.cpp">
+    <ClCompile Include="src\Building.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Building.cpp">
+    <ClCompile Include="src\Sun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Skyscrapper.cpp">
@@ -1382,10 +1382,10 @@
     <ClInclude Include="Dependencies\includes\Classes\Sun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Player.h">
+    <ClInclude Include="Dependencies\includes\Classes\Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependencies\includes\Classes\Building.h">
+    <ClInclude Include="Dependencies\includes\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h">

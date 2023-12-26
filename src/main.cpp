@@ -126,6 +126,9 @@ int main(int argc, char* argv[])
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
     Sun sun = Sun(3.55f, 50);
 
+    glm::vec3 lightPos(0.0f, 48.0, 0.0f);
+    glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -147,6 +150,8 @@ int main(int argc, char* argv[])
 
         // Use the shader program
         shader.use();
+        glUniform3fv(glGetUniformLocation(shader.ID, "lightPos"), 1, glm::value_ptr(lightPos));
+        glUniform3fv(glGetUniformLocation(shader.ID, "lightColor"), 1, glm::value_ptr(lightColor));
 
         // pass projection matrix to shader (note that in this case it could change every frame)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -163,6 +168,8 @@ int main(int argc, char* argv[])
         unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glActiveTexture(GL_TEXTURE0);
+
+        glUniform3fv(glGetUniformLocation(shader.ID, "viewpos"), 1, glm::value_ptr(camera.Position));
 
         // Start Drawing
         model = glm::mat4(1.0f);
@@ -286,7 +293,7 @@ int main(int argc, char* argv[])
         // draw sun
         glUseProgram(sun.getShaderId());
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-7.0f, 25.0, 15.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 48.0, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
