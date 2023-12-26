@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Building.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Dome.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Dependencies\includes\assimp\version.h" />
     <ClInclude Include="Dependencies\includes\assimp_glm_helpers.h" />
     <ClInclude Include="Dependencies\includes\camera.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Building.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3.h" />
     <ClInclude Include="Dependencies\includes\GLFW\glfw3native.h" />

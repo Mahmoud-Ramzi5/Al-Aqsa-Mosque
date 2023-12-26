@@ -17,7 +17,7 @@ enum Camera_Movement {
 };
 
 // Default camera values
-const float YAW =  -90.0f;
+const float YAW = -90.0f;
 const float PITCH = 0.0f;
 const float SPEED = 2.5f;
 const float SENSITIVITY = 0.1f;
@@ -69,7 +69,7 @@ public:
 
     // returns the view matrix calculated using Euler Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix()
-    {   
+    {
         if (is_FPS) {
             return glm::lookAt(Position, Position + Front, Up);
         }
@@ -106,6 +106,8 @@ public:
         if (direction == FORWARD) {
             if (is_FPS) {
                 Position += Front * velocity;
+                PlayerPos.x += (Front.x * velocity);
+                PlayerPos.z += (Front.z * velocity);
             }
             else {
                 PlayerPos += Front * velocity;
@@ -114,6 +116,8 @@ public:
         if (direction == BACKWARD) {
             if (is_FPS) {
                 Position -= Front * velocity;
+                PlayerPos.x -= (Front.x * velocity);
+                PlayerPos.z -= (Front.z * velocity);
             }
             else {
                 PlayerPos -= Front * velocity;
@@ -122,6 +126,8 @@ public:
         if (direction == LEFT) {
             if (is_FPS) {
                 Position -= Right * velocity;
+                PlayerPos.x -= (Right.x * velocity);
+                PlayerPos.z -= (Right.z * velocity);
             }
             else {
                 PlayerPos -= Right * velocity;
@@ -130,6 +136,8 @@ public:
         if (direction == RIGHT) {
             if (is_FPS) {
                 Position += Right * velocity;
+                PlayerPos.x += (Right.x * velocity);
+                PlayerPos.z += (Right.z * velocity);
             }
             else {
                 PlayerPos += Right * velocity;

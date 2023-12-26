@@ -28,9 +28,9 @@ Wall::Wall(unsigned int texture) {
     // reuturn to default Bufferss
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-    
+
     textureWall = texture;
-    
+
 }
 
 void Wall::DrawWall(unsigned int shaderId, int i) {
@@ -40,13 +40,13 @@ void Wall::DrawWall(unsigned int shaderId, int i) {
     // calculate the model matrix for each object and pass it to shader before drawing    
     glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     model = glm::rotate(model, glm::radians(i * angle), glm::vec3(0.0f, 1.0f, 0.0f));
-    model = glm::translate(model, glm::vec3(0.0f, 0.0f, 20.0f));
-    model = glm::scale(model, glm::vec3(40.0f, 1.0f, 1.0f));
-    
+    model = glm::translate(model, glm::vec3(0.0f, 0.0f, 23.5f));
+    model = glm::scale(model, glm::vec3(47.0f, 1.0f, 1.0f));
+
 
     unsigned int modelLoc = glGetUniformLocation(shaderId, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    
+
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
 }

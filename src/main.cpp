@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
     glEnable(GL_DEPTH_TEST);
 
     Shader shader = Shader("res/shaders/Basic.shader");
-    
+
 
     // load models
     // -----------
@@ -114,7 +114,7 @@ int main(int argc, char* argv[])
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Sun sun = Sun(3.55f, 50);
-    
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -159,22 +159,23 @@ int main(int argc, char* argv[])
 
 
         model = glm::mat4(1.0f);
-        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -7.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.3f, 0.0f));
-        model = glm::scale(model, glm::vec3(1.8f, 1.8f, 1.8f));
+        model = glm::translate(model, glm::vec3(0.0f, 1.07f, -7.0f));
+        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
-        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+        model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0, 17.0f));
-        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 1.1f, 19.0f));
+        model = glm::scale(model, glm::vec3(5.4f, 5.4f, 5.4f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
 
@@ -201,14 +202,14 @@ int main(int argc, char* argv[])
 
         // reuse shader
         shader.use();
-        
+
         if (is_FPS) {
-            player.DrawPlayer(shader, glm::vec3(0.0f, 0.0f, 0.0f));
+            player.DrawPlayer(shader, glm::vec3(0.0f, -1.0f, 0.0f));
         }
         else {
             player.DrawPlayer(shader, camera.GetPlayerPos());
         }
-        
+
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
