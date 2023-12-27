@@ -1,0 +1,66 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 11.09.2017 19:51:07
+
+newmtl green
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5216 0.7216 0.5294
+	Kd 0.5216 0.7216 0.5294
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder 2\Marble_g.jpg
+	map_Kd D:\New folder 2\Marble_g.jpg
+	map_bump D:\New folder 2\Marble_g.jpg
+	bump D:\New folder 2\Marble_g.jpg
+
+newmtl st_tile
+	Ns 70.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9922 0.9804 0.8941
+	Kd 0.9922 0.9804 0.8941
+	Ks 0.6300 0.6300 0.6300
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder 2\Marble 1.jpg
+	map_Kd D:\New folder 2\Marble 1.jpg
+	map_bump D:\New folder 2\Marble 1.jpg
+	bump D:\New folder 2\Marble 1.jpg
+
+newmtl blue
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.3882 0.7176 0.9451
+	Kd 0.3882 0.7176 0.9451
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder 2\Tile 3BL.jpg
+	map_Kd D:\New folder 2\Tile 3BL.jpg
+	map_bump D:\New folder 2\Tile 3BL.jpg
+	bump D:\New folder 2\Tile 3BL.jpg
+
+newmtl st_gold
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.9451 0.7725 0.4078
+	Kd 0.9451 0.7725 0.4078
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder 2\Metal G6.jpg
+	map_Kd D:\New folder 2\Metal G6.jpg
+	map_bump D:\New folder 2\Metal G6.jpg
+	bump D:\New folder 2\Metal G6.jpg

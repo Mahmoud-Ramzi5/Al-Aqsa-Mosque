@@ -50,7 +50,7 @@ float lastFrame = 0.0f;
 
 // Models
 Model Tree1;
-
+Model Mouthena;
 
 int main(int argc, char* argv[])
 {
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
     // load models
     // -----------
     Tree1 = Model("res/objects/trees/tree1/Tree.obj");
-
+    Mouthena = Model("res/objects/minaret/bb.obj");
 
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
@@ -196,7 +196,7 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model)); (modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
 
         shader.use();
@@ -304,6 +304,11 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(10.0f, 0.0f, -20.0f));
         DrawGrass(G, model, modelLoc, shader);
         
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f,0.0f,0.0f));
+        model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));	// it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Mouthena.Draw(shader);
 
         // draw sun
         glUseProgram(sun.getShaderId());
