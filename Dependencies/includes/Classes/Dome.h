@@ -7,6 +7,7 @@
 #include <corecrt_math_defines.h>
 #include <vector>
 #include <iostream>
+#include<shader.h>
 
 class Dome
 {
@@ -15,9 +16,12 @@ public:
 	float DomeRadius;
 	int NumSegments;
 	std::vector<glm::vec3> DomeVertices;
+	Shader DomeShader;
+	glm::vec3 color;
 
-	Dome(float radius, int numSegments);
+	Dome(float radius, int numSegments,glm::vec3 color);
 	void DrawDome();
+	unsigned int getShaderId();
 
 private:
 	std::vector<glm::vec3> CreateDome();

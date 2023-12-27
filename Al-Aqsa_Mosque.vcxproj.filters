@@ -1836,6 +1836,7 @@
     <None Include="Dependencies\dlls\ikpMP3.dll" />
     <None Include="Dependencies\dlls\irrKlang.dll" />
     <None Include="res\shaders\light.shader" />
+    <None Include="res\shaders\domeShader.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\awesomeface.png">

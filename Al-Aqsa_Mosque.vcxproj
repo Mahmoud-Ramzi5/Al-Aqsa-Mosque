@@ -747,6 +747,7 @@
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
     <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="res\shaders\Basic.shader" />
+    <None Include="res\shaders\domeShader.shader" />
     <None Include="res\shaders\light.shader" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
   </ItemGroup>

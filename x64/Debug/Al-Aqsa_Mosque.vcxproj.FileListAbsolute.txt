@@ -3,3 +3,4 @@ D:\projects\C++Projects\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe
 D:\U Projects\OpenGLProjects\Al-Aqsa_Mosque\x64\Debug\Al-Aqsa_Mosque.exe
 D:\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe
 D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe
+D:\ITE\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe

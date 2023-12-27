@@ -114,10 +114,12 @@ int main(int argc, char* argv[])
         load_RGBtexture("res/textures/down.png")
     };
 
+    glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
+
     SkyBox S = SkyBox(SkyBoxFaces);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
-    Dome D = Dome(0.75f, 50);
-    Dome D2 = Dome(0.35f, 50);
+    Dome D = Dome(0.75f, 100,color);
+    Dome D2 = Dome(0.35f, 50,color);
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
@@ -187,21 +189,34 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
+        
+        glUseProgram(D.getShaderId());
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.07f, -7.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model)); (modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
+
+        shader.use();
+        
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
+
+        glUseProgram(D2.getShaderId());
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.1f, 19.0f));
         model = glm::scale(model, glm::vec3(5.4f, 5.4f, 5.4f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
+        shader.use();
+
         //making some Buildings
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(12.0f, 0.0f, 27.0f));

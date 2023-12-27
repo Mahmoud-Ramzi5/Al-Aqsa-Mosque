@@ -8,11 +8,11 @@
 #include <vector>
 #include <iostream>
 
-Dome::Dome(float radius, int numSegments) {
+Dome::Dome(float radius, int numSegments,glm::vec3 color) {
     DomeRadius = radius;
     NumSegments = numSegments;
     DomeVertices = CreateDome();
-
+    DomeShader = Shader("res/shaders/domeShader.shader");
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -31,10 +31,14 @@ Dome::Dome(float radius, int numSegments) {
 }
 
 void Dome::DrawDome() {
+    DomeShader.use();
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_FAN, 0, DomeVertices.size());
 }
 
+unsigned int Dome::getShaderId() {
+    return DomeShader.ID;
+}
 // Function to create a dome geometry
 std::vector<glm::vec3> Dome::CreateDome() {
     std::vector<glm::vec3> vertices;
