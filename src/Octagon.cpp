@@ -44,5 +44,5 @@ void Octagon::DrawOct()
 {
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureOct);
-    glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 96, GL_UNSIGNED_INT, 0);
 }

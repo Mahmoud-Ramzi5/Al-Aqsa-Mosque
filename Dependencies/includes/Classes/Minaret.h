@@ -5,21 +5,20 @@ public:
     unsigned int VBO, VAO, EBO;
     unsigned int textureOct;
 
-    float vertices[208] = {
-        // positions          // colors           // texture coords
-       // positions          // colors          // texture coords
-        -0.2f, 0.0f, -0.2f,    -1.0f, 1.0f, 0.0f,    0.0f, 0.0f,
-         0.2f, 0.0f, -0.2f,    -1.0f, 1.0f, 0.0f,    0.25f, 0.0f,
-         0.2f, 0.0f , 0.2f,    -1.0f, 1.0f, 0.0f,    0.5f, 0.0f,
-        -0.2f, 0.0f , 0.2f,    -1.0f, 1.0f, 0.0f,    0.75f, 0.0f,
+    float vertices[112] = {
+        // positions            // normals         // texture coords
+        -0.2f, 0.0f, -0.2f,     0.0f, 1.0f, 0.0f,     0.0f, 0.0f,
+         0.2f, 0.0f, -0.2f,     0.0f, 1.0f, 0.0f,     0.25f, 0.0f,
+         0.2f, 0.0f, 0.2f,      0.0f, 1.0f, 0.0f,     0.5f, 0.0f,
+        -0.2f, 0.0f, 0.2f,      0.0f, 1.0f, 0.0f,     0.75f, 0.0f,
 
-        // positions          // colors         // texture coords
+        // positions            // normals         // texture coords
         -0.2f, 2.0f, -0.2f,     0.0f, 1.0f, 0.0f,    0.0f, 0.87f,
          0.2f, 2.0f, -0.2f,     0.0f, 1.0f, 0.0f,    0.25f, 0.87f,
          0.2f, 2.0f,  0.2f,     0.0f, 1.0f, 0.0f,    0.5f, 0.87f,
         -0.2f, 2.0f,  0.2f,     0.0f, 1.0f, 0.0f,    0.75f, 0.87f,
 
-        -0.2f, 0.0f, -0.2f,     -1.0f, 1.0f, 0.0f,    1.0f, 0.0f,
+        -0.2f, 0.0f, -0.2f,     0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
         -0.2f, 2.0f, -0.2f,     0.0f, 1.0f, 0.0f,    1.0f, 0.87f,
 
          0.0f, 3.0f, 0.0f,      0.0f, 1.0f, 0.0f,    0.125f, 1.0f,
@@ -50,6 +49,7 @@ public:
 
       4, 10, 5,
       5, 11, 6,
+
       6, 12, 7,
       7, 13, 9
     };

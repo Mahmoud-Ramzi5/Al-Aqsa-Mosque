@@ -1908,6 +1908,9 @@
     <Image Include="res\textures\carpet.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\Metal G6.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\lib\freeglut.lib" />

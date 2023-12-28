@@ -98,8 +98,15 @@ public:
         float velocity = MovementSpeed * deltaTime;
         float velocitywow = velocity * 5;
         if (direction == LEFT_SHIFT) {
-            velocity = velocity * 5;
-
+            velocitywow = velocity * 10;
+            if (is_FPS) {
+                Position += Front * velocitywow;
+                PlayerPos.x += (Front.x * velocitywow);
+                PlayerPos.z += (Front.z * velocitywow);
+            }
+            else {
+                PlayerPos += Front * velocity;
+            }
         }
 
 

@@ -17,7 +17,6 @@ public:
 	int NumSegments;
 	std::vector<glm::vec3> DomeVertices;
 	Shader DomeShader;
-	glm::vec3 color;
 
 	Dome(float radius, int numSegments,glm::vec3 color);
 	void DrawDome();

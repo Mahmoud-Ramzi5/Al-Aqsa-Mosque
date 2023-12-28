@@ -5,8 +5,8 @@ public:
     unsigned int VBO, VAO, EBO;
     unsigned int textureOct;
 
-    float vertices[208] = {
-        // positions          // colors           // texture coords
+    float vertices[216] = {
+        // positions          // normals           // texture coords
         0.0f,  0.0f, 0.5f,    0.0f, 1.0f, 0.0f,   0.0f, 0.0f,   // Vertex 0
 
         0.35f, 0.0f, 0.35f,   0.0f, 1.0f, 0.0f,   0.125f, 0.0f, // Vertex 1
@@ -19,7 +19,7 @@ public:
 
         0.0f, 0.0f, 0.5f,     0.0f ,1.0f, 0.0f,   1.0f, 0.0f,   // Vertex 8 (same as the Vertex 0 to close the shape)
 
-        // positions          // colors           // texture coords
+        // positions          // normals           // texture coords
         0.0f, 0.25f, 0.5f,     0.0f, 1.0f, 0.0f,   0.0f, 0.5f,   // vertex 9
 
         0.35f, 0.25f, 0.35f,   0.0f, 1.0f, 0.0f,   0.125f, 0.5f, // Vertex 10
@@ -33,17 +33,19 @@ public:
         0.0f, 0.25f, 0.5f,     0.0f, 1.0f, 0.0f,   1.0f, 0.5f,   // Vertex 17 (same as the Vertex 8 to close the shape)
 
         // middle of octagon (repeated just for textures coords)
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.0625f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.1875f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.3125f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.4375f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.5625f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.6875f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.8125f, 1.0f,
-        0.0f, 0.25f, 0.0f,       0.0f, 0.0f, 0.0f,  0.9375f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.0625f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.1875f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.3125f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.4375f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.5625f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.6875f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.8125f, 1.0f,
+        0.0f, 0.25f, 0.0f,     0.0f, 1.0f, 0.0f,    0.9375f, 1.0f,
+
+        0.0f, 0.0f, 0.0f,     0.0f, 1.0f, 0.0f,    0.5f, 0.5f,
     };
 
-    unsigned int indices[72] = {
+    unsigned int indices[96] = {
         // Sides (From Front Reverse Clock-Wise)
         0, 9, 10,
         10, 1, 0,
@@ -84,8 +86,16 @@ public:
 
         15, 24, 16,
 
-        16, 25, 17
+        16, 25, 17,
 
+        0, 26, 1,
+        1, 26, 2,
+        2, 26, 3,
+        3, 26, 4,
+        4, 26, 5,
+        5, 26, 6,
+        6, 26, 7,
+        7, 26, 8,
     };
 
     Octagon(unsigned int texture);

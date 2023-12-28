@@ -97,6 +97,7 @@ int main(int argc, char* argv[])
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
 
+    // load shader
     Shader shader = Shader("res/shaders/Basic.shader");
 
 
@@ -116,10 +117,12 @@ int main(int argc, char* argv[])
         load_RGBtexture("res/textures/down.png")
     };
 
-    glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
-    Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
-    Octagon mo = Octagon(load_RGBtexture("res/textures/Minaret.jpg"));
     SkyBox S = SkyBox(SkyBoxFaces);
+
+    glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
+
+    Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
+    Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 100,color);
     Dome D2 = Dome(0.35f, 50,color);
@@ -132,9 +135,10 @@ int main(int argc, char* argv[])
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
     Sun sun = Sun(3.55f, 50);
 
-    glm::vec3 lightPos(0.0f, 48.0, 0.0f);
+    glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 
+    float offset = 0.0f;
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -156,6 +160,8 @@ int main(int argc, char* argv[])
 
         // Use the shader program
         shader.use();
+        lightPos.x = 100 * sin(offset);
+        lightPos.y = 100 * cos(offset);
         glUniform3fv(glGetUniformLocation(shader.ID, "lightPos"), 1, glm::value_ptr(lightPos));
         glUniform3fv(glGetUniformLocation(shader.ID, "lightColor"), 1, glm::value_ptr(lightColor));
 
@@ -241,8 +247,7 @@ int main(int argc, char* argv[])
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 4.4f, -23.3f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(23.3f, 3.4f, -23.3f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
@@ -255,8 +260,7 @@ int main(int argc, char* argv[])
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 4.4f, -23.3f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, -23.3f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
@@ -269,8 +273,7 @@ int main(int argc, char* argv[])
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 4.4f, 23.3f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, 23.3f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
@@ -283,8 +286,7 @@ int main(int argc, char* argv[])
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 4.4f, 23.3f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(23.3f, 3.4f, 23.3f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
@@ -421,12 +423,13 @@ int main(int argc, char* argv[])
         // draw sun
         glUseProgram(sun.getShaderId());
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 48.0, 0.0f));
+        model = glm::translate(model, glm::vec3(51*sin(offset), 51*cos(offset), 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         sun.DrawSun();
 
+        offset += 0.005;
         // reuse shader
         shader.use();
 
