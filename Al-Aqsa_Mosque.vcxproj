@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Minaret.cpp" />
     <ClCompile Include="src\Building.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Floor.cpp" />
@@ -590,6 +591,7 @@
     <ClInclude Include="Dependencies\includes\Classes\Floor.h" />
     <ClInclude Include="Dependencies\includes\Classes\Wall.h" />
     <ClInclude Include="Dependencies\includes\Classes\SkyBox.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Minaret.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -758,6 +760,8 @@
     <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
     <Image Include="res\textures\bottom.jpg" />
+    <Image Include="res\textures\carpet.jpg" />
+    <Image Include="res\textures\complete_minaret.png" />
     <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\down.png" />
     <Image Include="res\textures\face.png" />

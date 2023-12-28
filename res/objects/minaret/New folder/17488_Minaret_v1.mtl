@@ -1,0 +1,41 @@
+newmtl green
+illum 2
+Ka 0.5216 0.7216 0.5294
+Kd 0.5216 0.7216 0.5294
+Ks 0.0000 0.0000 0.0000
+Ke 0.0000 0.0000 0.0000
+map_Ka GG/Marble_g.jpg
+map_Kd Marble_g.jpg
+
+newmtl st_tile
+illum 2
+Ka 0.9922 0.9804 0.8941
+Kd 0.9922 0.9804 0.8941
+Ks 0.6300 0.6300 0.6300
+Ke 0.0000 0.0000 0.0000
+map_Ka Marble 1.jpg
+map_Kd Marble 1.jpg
+map_bump Marble 1.jpg
+bump Marble 1.jpg
+
+newmtl blue
+illum 2
+Ka 0.3882 0.7176 0.9451
+Kd 0.3882 0.7176 0.9451
+Ks 0.0000 0.0000 0.0000
+Ke 0.0000 0.0000 0.0000
+map_Ka Tile 3BL.jpg
+map_Kd Tile 3BL.jpg
+map_bump Tile 3BL.jpg
+bump Tile 3BL.jpg
+
+newmtl st_gold
+illum 2
+Ka 0.9451 0.7725 0.4078
+Kd 0.9451 0.7725 0.4078
+Ks 0.0000 0.0000 0.0000
+Ke 0.0000 0.0000 0.0000
+map_Ka Metal G6.jpg
+map_Kd Metal G6.jpg
+map_bump Metal G6.jpg
+bump Metal G6.jpg

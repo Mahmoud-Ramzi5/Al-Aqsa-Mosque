@@ -144,7 +144,7 @@ public:
             }
         }
         if (is_FPS) {
-            Position.y = 0.4f;
+          //  Position.y = 0.4f;
         }
         else {
             Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;

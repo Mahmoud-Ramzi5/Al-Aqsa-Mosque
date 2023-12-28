@@ -51,6 +51,9 @@
     <ClCompile Include="src\Skyscrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Minaret.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1391,6 +1394,9 @@
     <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Classes\Minaret.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1894,6 +1900,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\full skyscrapper.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\complete_minaret.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\carpet.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

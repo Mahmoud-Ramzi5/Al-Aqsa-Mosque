@@ -21,6 +21,8 @@
 #include <Classes/Building.h>
 #include <Classes/Skyscrapper.h>
 #include <Classes/Sun.h>
+#include <Classes/Minaret.h>
+
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -50,7 +52,7 @@ float lastFrame = 0.0f;
 
 // Models
 Model Tree1;
-Model Mouthena;
+Model Chandelier;
 
 int main(int argc, char* argv[])
 {
@@ -101,7 +103,7 @@ int main(int argc, char* argv[])
     // load models
     // -----------
     Tree1 = Model("res/objects/trees/tree1/Tree.obj");
-    Mouthena = Model("res/objects/minaret/bb.obj");
+    Chandelier = Model("res/objects/chandelier/11833_Chandelier_v1_l2.obj");
 
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
@@ -115,7 +117,8 @@ int main(int argc, char* argv[])
     };
 
     glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
-
+    Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
+    Octagon mo = Octagon(load_RGBtexture("res/textures/Minaret.jpg"));
     SkyBox S = SkyBox(SkyBoxFaces);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 100,color);
@@ -126,6 +129,7 @@ int main(int argc, char* argv[])
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
     Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
+    Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
     Sun sun = Sun(3.55f, 50);
 
     glm::vec3 lightPos(0.0f, 48.0, 0.0f);
@@ -180,24 +184,111 @@ int main(int argc, char* argv[])
         f.DrawFloor();
 
         model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        C.DrawFloor();
+
+        model = glm::mat4(1.0f);
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         S.DrawSkyBox();
 
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -7.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -10.0f));
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+        model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
         
         glUseProgram(D.getShaderId());
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 1.07f, -7.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 1.07f, -10.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
+
+        shader.use();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Chandelier.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Chandelier.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-2.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Chandelier.Draw(shader);
+
+        //Minaret
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 1.0f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 4.4f, -23.3f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        //Minaret
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 4.4f, -23.3f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        //Minaret
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 4.4f, 23.3f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        //Minaret
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 1.0f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 4.4f, 23.3f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
 
         shader.use();
         
@@ -289,26 +380,43 @@ int main(int argc, char* argv[])
             W.DrawWall(shader.ID, i);
         }
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 2.0f));
         DrawGrass(G, model, modelLoc, shader);
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -20.0f));
+        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, 2.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.0f, 0.0f, -2.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, -2.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(20.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-20.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         DrawGrass(G, model, modelLoc, shader);
         
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-10.0f, 0.0f, -20.0f));
+        model = glm::translate(model, glm::vec3(-10.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         DrawGrass(G, model, modelLoc, shader);
         
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(10.0f, 0.0f, -20.0f));
+        model = glm::translate(model, glm::vec3(10.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         DrawGrass(G, model, modelLoc, shader);
         
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f,0.0f,0.0f));
-        model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));	// it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Mouthena.Draw(shader);
+
 
         // draw sun
         glUseProgram(sun.getShaderId());
@@ -514,6 +622,19 @@ void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     Tree1.Draw(shader);
 
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
     model = Model;
     model = glm::translate(model, glm::vec3(1.0f, 0.0f, 6.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
@@ -525,5 +646,43 @@ void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(1.0f, 0.0f, 2.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 2.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(1.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+    model = Model;
+    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    Tree1.Draw(shader);
+
+
 
 }
