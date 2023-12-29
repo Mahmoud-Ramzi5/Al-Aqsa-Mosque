@@ -1,8 +1,7 @@
 #include "Classes/Octagon.h"
-#include<glad/glad.h>
+#include <glad/glad.h>
 
 Octagon::Octagon(unsigned int texture) {
-
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
@@ -45,4 +44,5 @@ void Octagon::DrawOct()
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureOct);
     glDrawElements(GL_TRIANGLES, 96, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }

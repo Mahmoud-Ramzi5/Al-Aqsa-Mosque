@@ -1,5 +1,5 @@
 #include "Classes/Dome.h"
-#include<glad/glad.h>
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -34,11 +34,13 @@ void Dome::DrawDome() {
     DomeShader.use();
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_FAN, 0, DomeVertices.size());
+    glBindVertexArray(0);
 }
 
 unsigned int Dome::getShaderId() {
     return DomeShader.ID;
 }
+
 // Function to create a dome geometry
 std::vector<glm::vec3> Dome::CreateDome() {
     std::vector<glm::vec3> vertices;

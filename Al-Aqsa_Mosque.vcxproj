@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Cylinder.cpp" />
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
     <ClCompile Include="src\Minaret.cpp" />
     <ClCompile Include="src\Building.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="src\Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dependencies\includes\Classes\Cylinder.h" />
     <ClInclude Include="Dependencies\includes\assimp\ai_assert.h" />
     <ClInclude Include="Dependencies\includes\assimp\anim.h" />
     <ClInclude Include="Dependencies\includes\assimp\camera.h" />

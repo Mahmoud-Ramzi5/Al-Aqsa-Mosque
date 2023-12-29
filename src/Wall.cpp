@@ -35,7 +35,6 @@ Wall::Wall(unsigned int texture) {
     glBindVertexArray(0);
 
     textureWall = texture;
-
 }
 
 void Wall::DrawWall(unsigned int shaderId, int i) {
@@ -48,10 +47,10 @@ void Wall::DrawWall(unsigned int shaderId, int i) {
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 23.5f));
     model = glm::scale(model, glm::vec3(47.0f, 1.0f, 1.0f));
 
-
     unsigned int modelLoc = glGetUniformLocation(shaderId, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
+    glBindVertexArray(0);
 }

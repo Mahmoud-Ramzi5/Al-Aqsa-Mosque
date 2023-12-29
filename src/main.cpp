@@ -12,16 +12,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <Player.h>
+#include <Classes/Sun.h>
 #include <Classes/SkyBox.h>
+#include <Classes/Floor.h>
 #include <Classes/Octagon.h>
 #include <Classes/Dome.h>
 #include <Classes/Qubli.h>
-#include <Classes/Floor.h>
+#include <Classes/Minaret.h>
 #include <Classes/Wall.h>
 #include <Classes/Building.h>
 #include <Classes/Skyscrapper.h>
-#include <Classes/Sun.h>
-#include <Classes/Minaret.h>
+#include <Classes/Cylinder.h>
 
 
 
@@ -107,7 +108,7 @@ int main(int argc, char* argv[])
     Chandelier = Model("res/objects/chandelier/11833_Chandelier_v1_l2.obj");
 
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
-    camera = Camera((glm::vec3(0.0f, 0.4f, 4.0f)));
+    camera = Camera((glm::vec3(0.0f, 0.5f, 3.5f)));
 
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
@@ -117,23 +118,23 @@ int main(int argc, char* argv[])
         load_RGBtexture("res/textures/down.png")
     };
 
+    Sun sun = Sun(3.5f, 350);
     SkyBox S = SkyBox(SkyBoxFaces);
+    Floor F = Floor(load_RGBtexture("res/textures/floor.jpg"));
+    Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
+    Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
 
     glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
-
+    Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
+    Dome D = Dome(0.75f, 100, color);
+    Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
+    Dome D2 = Dome(0.35f, 50, color);
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
-    Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
-    Dome D = Dome(0.75f, 100,color);
-    Dome D2 = Dome(0.35f, 50,color);
-    Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
-    Floor f = Floor(load_RGBtexture("res/textures/floor.jpg"));
-    Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
-    Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
-    Sun sun = Sun(3.55f, 50);
+    //Cylinder cc = Cylinder(5.0f, 20.0f);
 
     glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -164,6 +165,7 @@ int main(int argc, char* argv[])
         lightPos.y = 100 * cos(offset);
         glUniform3fv(glGetUniformLocation(shader.ID, "lightPos"), 1, glm::value_ptr(lightPos));
         glUniform3fv(glGetUniformLocation(shader.ID, "lightColor"), 1, glm::value_ptr(lightColor));
+        glUniform3fv(glGetUniformLocation(shader.ID, "viewpos"), 1, glm::value_ptr(camera.Position));
 
         // pass projection matrix to shader (note that in this case it could change every frame)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -181,13 +183,28 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glActiveTexture(GL_TEXTURE0);
 
-        glUniform3fv(glGetUniformLocation(shader.ID, "viewpos"), 1, glm::value_ptr(camera.Position));
 
         // Start Drawing
+        // draw sun
+        glUseProgram(sun.getShaderId());
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * cos(offset), 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
+        sun.DrawSun();
+
+        shader.use();
+        // Draw SkyBox
+        model = glm::mat4(1.0f);
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        S.DrawSkyBox();
+
+        // Draw Floor
         model = glm::mat4(1.0f);
         model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        f.DrawFloor();
+        F.DrawFloor();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
@@ -196,10 +213,42 @@ int main(int argc, char* argv[])
         C.DrawFloor();
 
         model = glm::mat4(1.0f);
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        S.DrawSkyBox();
+        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 2.0f));
+        DrawGrass(G, model, modelLoc, shader);
 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, 2.0f));
+        DrawGrass(G, model, modelLoc, shader);
 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.0f, 0.0f, -2.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, -2.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(20.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-20.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-10.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(10.0f, 0.0f, -15.5f));
+        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        // Draw Dome of the Rock
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, -10.0f));
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
@@ -216,8 +265,9 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
 
+        // reuse shader
         shader.use();
-
+        // Draw Chandelier
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
         model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -225,75 +275,7 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Chandelier.Draw(shader);
 
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
-        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Chandelier.Draw(shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-2.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
-        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Chandelier.Draw(shader);
-
-        //Minaret
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 1.0f, -23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        m.DrawMinaret();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 3.4f, -23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        mo.DrawOct();
-
-        //Minaret
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, -23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        m.DrawMinaret();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, -23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        mo.DrawOct();
-
-        //Minaret
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, 23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        m.DrawMinaret();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, 23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        mo.DrawOct();
-
-        //Minaret
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 1.0f, 23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        m.DrawMinaret();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 3.4f, 23.3f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        mo.DrawOct();
-
-
-        shader.use();
-        
+        // Draw Qubli
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
@@ -308,9 +290,61 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
+
+        // reuse shader
         shader.use();
 
-        //making some Buildings
+        // Draw Minarets
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 1.0f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 3.4f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, -23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 1.0f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        m.DrawMinaret();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(23.3f, 3.4f, 23.3f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mo.DrawOct();
+
+
+        // Draw Some Buildings
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(12.0f, 0.0f, 27.0f));
         model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
@@ -377,70 +411,26 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         B2.DrawSkyscrapper();
         
-        //drawig the wall
+        // Draw the Wall
         for (int i = 0; i < 4; i++) {
             W.DrawWall(shader.ID, i);
         }
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 2.0f));
-        DrawGrass(G, model, modelLoc, shader);
 
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, 2.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, -2.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, -2.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(20.0f, 0.0f, -15.5f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-20.0f, 0.0f, -15.5f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        DrawGrass(G, model, modelLoc, shader);
-        
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-10.0f, 0.0f, -15.5f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        DrawGrass(G, model, modelLoc, shader);
-        
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(10.0f, 0.0f, -15.5f));
-        model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        DrawGrass(G, model, modelLoc, shader);
-        
-        model = glm::mat4(1.0f);
-
-
-        // draw sun
-        glUseProgram(sun.getShaderId());
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(51*sin(offset), 51*cos(offset), 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
-        sun.DrawSun();
-
-        offset += 0.005;
-        // reuse shader
-        shader.use();
-
+        // Draw Player
         if (is_FPS) {
             player.DrawPlayer(shader, glm::vec3(0.0f, -1.0f, 0.0f));
         }
         else {
             player.DrawPlayer(shader, camera.GetPlayerPos());
         }
+        /*
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(9.0f, 25.0f, -9.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        cc.DrawCylinder();*/
 
-
+        // increse offset
+        offset += 0.005;
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
@@ -588,13 +578,13 @@ void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     G.DrawFloor();
 
-    // render the loaded model
+    // render the Tree models
     model = Model;
     model = glm::translate(model, glm::vec3(2.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     Tree1.Draw(shader);
-    //more trees!!!!!!!!:)
+
     model = Model;
     model = glm::translate(model, glm::vec3(-2.0f, 0.0f, 4.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
@@ -685,7 +675,4 @@ void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     Tree1.Draw(shader);
-
-
-
 }

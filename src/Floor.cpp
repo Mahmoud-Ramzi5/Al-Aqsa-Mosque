@@ -1,5 +1,6 @@
 #include "Classes/Floor.h"
-#include<glad/glad.h>
+#include <glad/glad.h>
+
 Floor::Floor(unsigned int texture) {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -29,15 +30,19 @@ Floor::Floor(unsigned int texture) {
 
     textureOct = texture;
 }
+
 float* Floor::GetVertices() {
     return vertices;
 }
+
 unsigned int* Floor::GetIndices() {
     return indices;
 }
+
 void Floor::DrawFloor()
 {
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureOct);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }

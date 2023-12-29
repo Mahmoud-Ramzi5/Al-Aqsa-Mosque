@@ -2,7 +2,6 @@
 #include <glad/glad.h>
 
 Minaret::Minaret(unsigned int texture) {
-
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
@@ -45,4 +44,5 @@ void Minaret::DrawMinaret()
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureOct);
     glDrawElements(GL_TRIANGLES, 48, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }  

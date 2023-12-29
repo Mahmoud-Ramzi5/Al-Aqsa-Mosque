@@ -7,7 +7,6 @@ public:
     unsigned int textureSkyscrapper;
 
     float vertices[80] = {
-        //Building
         // positions            // normals          // texture coords
         -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 0.0f,
          0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.264f, 0.0f,
@@ -31,7 +30,7 @@ public:
        4, 5, 6,
        6, 7, 4,
 
-       //sides
+      // Sides
        0, 1, 4,
        4, 1, 5,
 

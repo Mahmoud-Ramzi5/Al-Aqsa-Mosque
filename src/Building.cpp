@@ -2,7 +2,6 @@
 #include <glad/glad.h>
 
 Building::Building(unsigned int texture) {
-
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
@@ -45,4 +44,5 @@ void Building::DrawBuilding()
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, textureBuilding);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }

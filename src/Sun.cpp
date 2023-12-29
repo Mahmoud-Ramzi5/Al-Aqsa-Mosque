@@ -35,6 +35,7 @@ void Sun::DrawSun() {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLE_FAN, 0, SunVertices.size());
 }
+
 unsigned int Sun::getShaderId() {
     return sunShader.ID;
 }

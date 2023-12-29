@@ -7,18 +7,17 @@ public:
     unsigned int textureBuilding;
 
     float vertices[80] = {
-        //Building
-        // positions          // colors          // texture coords
+        // positions            // normals          // texture coords
         -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 0.0f,
          0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.267f, 0.0f,
          0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.498f, 0.0f,
         -0.5f, 0.0f , 0.7f,     0.0f, 1.0f, 0.0f,    0.769f, 0.0f,
 
-        // positions          // colors         // texture coords
+        // positions            // normals         // texture coords
         -0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.0f, 1.0f,
-         0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,     0.267f, 1.0f,
+         0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    0.267f, 1.0f,
          0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,    0.498f, 1.0f,
-        -0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,   0.769f, 1.0f,
+        -0.5f, 1.0f,  0.7f,     0.0f, 1.0f, 0.0f,    0.769f, 1.0f,
 
         -0.5f, 0.0f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
         -0.5f, 1.0f, -0.7f,     0.0f, 1.0f, 0.0f,    1.0f, 1.0f,
@@ -31,7 +30,7 @@ public:
        4, 5, 6,
        6, 7, 4,
 
-       //sides
+      // Sides
        0, 1, 4,
        4, 1, 5,
 
