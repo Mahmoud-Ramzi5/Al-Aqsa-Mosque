@@ -16,13 +16,14 @@
 #include <Classes/SkyBox.h>
 #include <Classes/Floor.h>
 #include <Classes/Octagon.h>
+#include <Classes/Cylinder.h>
 #include <Classes/Dome.h>
 #include <Classes/Qubli.h>
 #include <Classes/Minaret.h>
 #include <Classes/Wall.h>
 #include <Classes/Building.h>
 #include <Classes/Skyscrapper.h>
-#include <Classes/Cylinder.h>
+
 
 
 
@@ -123,18 +124,16 @@ int main(int argc, char* argv[])
     Floor F = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
-
-    glm::vec3 color = glm::vec3(0.7216, 0.6157, 0);
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
-    Dome D = Dome(0.75f, 100, color);
+    Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
-    Dome D2 = Dome(0.35f, 50, color);
+    Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
+    Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/yellow_grid.png"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
     Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
-    //Cylinder cc = Cylinder(5.0f, 20.0f);
 
     glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -193,8 +192,10 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         sun.DrawSun();
-
+        
+        // reuse shader
         shader.use();
+
         // Draw SkyBox
         model = glm::mat4(1.0f);
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -202,7 +203,7 @@ int main(int argc, char* argv[])
 
         // Draw Floor
         model = glm::mat4(1.0f);
-        model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+        model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.35f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         F.DrawFloor();
 
@@ -213,19 +214,11 @@ int main(int argc, char* argv[])
         C.DrawFloor();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 2.0f));
+        model = glm::translate(model, glm::vec3(5.0f, 0.0f, -1.5f));
         DrawGrass(G, model, modelLoc, shader);
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, 2.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, -2.0f));
-        DrawGrass(G, model, modelLoc, shader);
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-4.0f, 0.0f, -2.0f));
+        model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -1.5f));
         DrawGrass(G, model, modelLoc, shader);
 
         model = glm::mat4(1.0f);
@@ -256,17 +249,17 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
         
-        glUseProgram(D.getShaderId());
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 1.07f, -10.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        cc.DrawCylinder();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 1.89f, -10.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
-        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(D.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
 
-        // reuse shader
-        shader.use();
         // Draw Chandelier
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.0f, -10.0f)); // translate it down so it's at the center of the scene
@@ -282,17 +275,10 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Q.DrawQubli();
 
-        glUseProgram(D2.getShaderId());
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 1.1f, 19.0f));
         model = glm::scale(model, glm::vec3(5.4f, 5.4f, 5.4f));
-        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(D2.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
-
-        // reuse shader
-        shader.use();
 
         // Draw Minarets
         model = glm::mat4(1.0f);
@@ -342,7 +328,6 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
-
 
         // Draw Some Buildings
         model = glm::mat4(1.0f);
@@ -423,12 +408,7 @@ int main(int argc, char* argv[])
         else {
             player.DrawPlayer(shader, camera.GetPlayerPos());
         }
-        /*
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(9.0f, 25.0f, -9.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        cc.DrawCylinder();*/
-
+        
         // increse offset
         offset += 0.005;
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)

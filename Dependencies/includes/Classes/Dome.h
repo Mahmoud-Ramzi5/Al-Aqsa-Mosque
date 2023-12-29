@@ -15,12 +15,11 @@ public:
 	unsigned int VBO, VAO;
 	float DomeRadius;
 	int NumSegments;
+	unsigned int textureDome;
 	std::vector<glm::vec3> DomeVertices;
-	Shader DomeShader;
 
-	Dome(float radius, int numSegments,glm::vec3 color);
+	Dome(float radius, int numSegments, unsigned int texture);
 	void DrawDome();
-	unsigned int getShaderId();
 
 private:
 	std::vector<glm::vec3> CreateDome();

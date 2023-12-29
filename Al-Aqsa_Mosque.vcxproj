@@ -751,7 +751,6 @@
     <None Include="Dependencies\includes\glm\gtx\wrap.inl" />
     <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="res\shaders\Basic.shader" />
-    <None Include="res\shaders\domeShader.shader" />
     <None Include="res\shaders\light.shader" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
   </ItemGroup>
@@ -765,6 +764,7 @@
     <Image Include="res\textures\carpet.jpg" />
     <Image Include="res\textures\complete_minaret.png" />
     <Image Include="res\textures\Dome.png" />
+    <Image Include="res\textures\dome_cylinder.jpg" />
     <Image Include="res\textures\down.png" />
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
@@ -778,6 +778,7 @@
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\Y.png" />
+    <Image Include="res\textures\yellow_grid.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\lib\assimp.lib" />

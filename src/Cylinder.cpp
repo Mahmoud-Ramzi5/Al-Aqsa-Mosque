@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-Cylinder::Cylinder(float radius, float height) {
+Cylinder::Cylinder(float radius, float height, unsigned int texture) {
     Radius = radius;
     Height = height;
     CreateCylinder();
@@ -25,17 +25,25 @@ Cylinder::Cylinder(float radius, float height) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    // Position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    // normals attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    // texture coord attribute
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+
+    textureCylinder = texture;
 }
 
 void Cylinder::DrawCylinder() {
     glBindVertexArray(VAO);
-    // Draw the cylinder using indexed rendering
+    glBindTexture(GL_TEXTURE_2D, textureCylinder);
     glDrawElements(GL_TRIANGLES, 360 * 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
@@ -45,14 +53,30 @@ void Cylinder::CreateCylinder() {
         float angle = glm::radians(static_cast<float>(i));
 
         // Top circle
-        CylinderVertices[i * 3] = Radius * cos(angle);
-        CylinderVertices[i * 3 + 1] = Height / 2.0f;
-        CylinderVertices[i * 3 + 2] = Radius * sin(angle);
+        // positions
+        CylinderVertices[i * 8] = Radius * cos(angle);
+        CylinderVertices[i * 8 + 1] = Height / 2.0f;
+        CylinderVertices[i * 8 + 2] = Radius * sin(angle);
+        // normals
+        CylinderVertices[i * 8 + 3] = 0.0f;
+        CylinderVertices[i * 8 + 4] = 1.0f;
+        CylinderVertices[i * 8 + 5] = 0.0f;
+        // texture coords
+        CylinderVertices[i * 8 + 6] = static_cast<float>(i) / (Sides - 1); // Texture coordinate U
+        CylinderVertices[i * 8 + 7] = 1.0f; // Texture coordinate V
 
         // Bottom circle
-        CylinderVertices[(Sides + i) * 3] = Radius * cos(angle);
-        CylinderVertices[(Sides + i) * 3 + 1] = -Height / 2.0f;
-        CylinderVertices[(Sides + i) * 3 + 2] = Radius * sin(angle);
+        // positions
+        CylinderVertices[(Sides + i) * 8] = Radius * cos(angle);
+        CylinderVertices[(Sides + i) * 8 + 1] = -Height / 2.0f;
+        CylinderVertices[(Sides + i) * 8 + 2] = Radius * sin(angle);
+        // normals
+        CylinderVertices[(Sides + i) * 8 + 3] = 0.0f;
+        CylinderVertices[(Sides + i) * 8 + 4] = 1.0f;
+        CylinderVertices[(Sides + i) * 8 + 5] = 0.0f;
+        // texture coords
+        CylinderVertices[(Sides + i) * 8 + 6] = static_cast<float>(i) / (Sides - 1); // Texture coordinate U
+        CylinderVertices[(Sides + i) * 8 + 7] = 0.0f; // Texture coordinate V
 
         // Indices for indexed rendering
         indices[i * 6] = i;
