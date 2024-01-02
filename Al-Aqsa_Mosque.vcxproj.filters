@@ -57,6 +57,9 @@
     <ClCompile Include="src\Cylinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1403,6 +1406,9 @@
     <ClInclude Include="Dependencies\includes\Classes\Cylinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Classes\Rug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1920,6 +1926,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\dome_cylinder.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\wall2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\traditional-persian.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -134,6 +134,7 @@
     <ClCompile Include="Dependencies\includes\glm\detail\glm.cpp" />
     <ClCompile Include="src\Minaret.cpp" />
     <ClCompile Include="src\Building.cpp" />
+    <ClCompile Include="src\Rug.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Dome.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Dependencies\includes\assimp_glm_helpers.h" />
     <ClInclude Include="Dependencies\includes\camera.h" />
     <ClInclude Include="Dependencies\includes\Classes\Building.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Rug.h" />
     <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h" />
     <ClInclude Include="Dependencies\includes\Classes\Sun.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
@@ -777,6 +779,9 @@
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
+    <Image Include="res\textures\traditional-persian.jpg" />
+    <Image Include="res\textures\wall.jpg" />
+    <Image Include="res\textures\wall2.jpg" />
     <Image Include="res\textures\Y.png" />
     <Image Include="res\textures\yellow_grid.png" />
   </ItemGroup>

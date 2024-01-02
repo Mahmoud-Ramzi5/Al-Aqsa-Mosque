@@ -15,6 +15,7 @@
 #include <Classes/Sun.h>
 #include <Classes/SkyBox.h>
 #include <Classes/Floor.h>
+#include <Classes/Rug.h>
 #include <Classes/Octagon.h>
 #include <Classes/Cylinder.h>
 #include <Classes/Dome.h>
@@ -124,6 +125,7 @@ int main(int argc, char* argv[])
     Floor F = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
+    Rug R = Rug(load_RGBtexture("res/textures/traditional-persian.jpg"));
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
@@ -131,7 +133,7 @@ int main(int argc, char* argv[])
     Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/yellow_grid.png"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
-    Wall W = Wall(load_RGBtexture("res/textures/Y.png"));
+    Wall W = Wall(load_RGBtexture("res/textures/wall2.jpg"));
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
 
@@ -209,9 +211,17 @@ int main(int argc, char* argv[])
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 1.0f, 1.4f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         C.DrawFloor();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.2f, 0.02f, 15.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 1.0f, 0.3f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        R.DrawRug();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(5.0f, 0.0f, -1.5f));
