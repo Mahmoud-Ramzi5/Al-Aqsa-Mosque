@@ -20,6 +20,7 @@
 #include <Classes/Cylinder.h>
 #include <Classes/Dome.h>
 #include <Classes/Qubli.h>
+#include <Classes/QubliInside.h>
 #include <Classes/Minaret.h>
 #include <Classes/Singlewall.h>
 #include <Classes/Wall.h>
@@ -138,9 +139,10 @@ int main(int argc, char* argv[])
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
-    Qubli QQ = Qubli(load_RGBtexture("res/textures/inside_Qubli.jpg"));
+    Qubli QQ = Qubli(load_RGBtexture("res/textures/inside_Qubli.jpg"));  
     Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
+    Cylinder Qc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/qublicylander.jpg"));
     Cylinder Bc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
     Dome D2 = Dome(0.35f, 250, load_RGBtexture("res/textures/QubliDome.jpg"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
@@ -238,7 +240,7 @@ int main(int argc, char* argv[])
         C.DrawFloor();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.27f, 0.02f, 15.0f));
+        model = glm::translate(model, glm::vec3(4.27f, 0.02f, 16.0f));
         model = glm::scale(model, glm::vec3(0.7f, 1.0f, 0.3f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -251,7 +253,7 @@ int main(int argc, char* argv[])
         K.DrawRug();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 15.5f));
+        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 16.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -373,13 +375,20 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(0.0f, 2.11f, 20.0f));
         model = glm::scale(model, glm::vec3(0.51f, 0.3f, 0.51f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        cc.DrawCylinder();
+        Qc.DrawCylinder();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.0f, 20.0f));
         model = glm::scale(model, glm::vec3(4.0f, 3.5f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
+
+        //Draw Qubli (Inside)
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.01f, 16.0f));
+        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        QQ.DrawQubli();
 
         // Draw MoonStick
         model = glm::mat4(1.0f);
@@ -389,11 +398,7 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         MoonStick.Draw(shader);
 
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
-        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        QQ.DrawQubli();
+ 
 
         // Draw Minarets
         model = glm::mat4(1.0f);

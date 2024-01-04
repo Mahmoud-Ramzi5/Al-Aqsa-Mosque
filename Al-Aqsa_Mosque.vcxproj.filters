@@ -63,6 +63,9 @@
     <ClCompile Include="src\Singlewall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\QubliInside.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1415,6 +1418,9 @@
     <ClInclude Include="Dependencies\includes\Classes\Singlewall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Classes\QubliInside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1943,9 +1949,6 @@
     <Image Include="res\textures\graybrick.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\frontimam.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\Mihrab.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1964,10 +1967,19 @@
     <Image Include="res\textures\inside_Dome.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\inside_Qubli.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="res\textures\QubliDome.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\inside_Qubli.jpg">
+    <Image Include="res\textures\insides.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\qublicylander.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\dome.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
