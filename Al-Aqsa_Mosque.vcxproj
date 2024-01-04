@@ -762,10 +762,6 @@
     <Image Include="res\objects\tree\bark_loo.jpg" />
     <Image Include="res\objects\tree\blatt1.jpg" />
     <Image Include="res\objects\tree\blatt1_a.jpg" />
-    <Image Include="res\textures\1.png" />
-    <Image Include="res\textures\2.png" />
-    <Image Include="res\textures\3.png" />
-    <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
     <Image Include="res\textures\bottom.jpg" />
     <Image Include="res\textures\carpet.jpg" />
@@ -781,18 +777,19 @@
     <Image Include="res\textures\fullbuilding.png" />
     <Image Include="res\textures\fullwall.png" />
     <Image Include="res\textures\grass.jpg" />
+    <Image Include="res\textures\gray.jpg" />
     <Image Include="res\textures\graybrick.png" />
-    <Image Include="res\textures\mehrab.jpg" />
+    <Image Include="res\textures\little_cylinder.jpg" />
     <Image Include="res\textures\Metal G6.jpg" />
     <Image Include="res\textures\Mihrab.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
-    <Image Include="res\textures\sidewalk.jpg" />
+    <Image Include="res\textures\selsela2.jpg" />
     <Image Include="res\textures\sidewalk.png" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\traditional-persian.jpg" />
-    <Image Include="res\textures\wall.jpg" />
     <Image Include="res\textures\wall2.jpg" />
+    <Image Include="res\textures\wall4.jpg" />
     <Image Include="res\textures\Y.png" />
     <Image Include="res\textures\yellow_grid.png" />
   </ItemGroup>

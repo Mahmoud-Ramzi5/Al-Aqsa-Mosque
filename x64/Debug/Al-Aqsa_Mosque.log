@@ -1,18 +1,3 @@
-﻿  glm.cpp
-  Cylinder.cpp
-  Dome.cpp
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\Dome.cpp(43,57): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\Dome.cpp(53,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\Dome.cpp(61,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Octagon.cpp
-  Qubli.cpp
-  Singlewall.cpp
-  Skyscrapper.cpp
-  Sun.cpp
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\Sun.cpp(36,56): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  Wall.cpp
-  main.cpp
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\main.cpp(450,24): warning C4305: '+=': truncation from 'double' to 'float'
-  Generating Code...
-  glad.c
+﻿  main.cpp
+D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\main.cpp(474,24): warning C4305: '+=': truncation from 'double' to 'float'
   Al-Aqsa_Mosque.vcxproj -> D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe

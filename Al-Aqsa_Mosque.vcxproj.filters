@@ -1862,9 +1862,6 @@
     <None Include="res\shaders\light.shader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\awesomeface.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\back.jpg">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1934,9 +1931,6 @@
     <Image Include="res\textures\dome_cylinder.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\wall.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\wall2.jpg">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1949,25 +1943,22 @@
     <Image Include="res\textures\graybrick.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\sidewalk.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\mehrab.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\frontimam.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\Mihrab.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\wall4.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\selsela2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\little_cylinder.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\gray.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

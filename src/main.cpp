@@ -130,14 +130,17 @@ int main(int argc, char* argv[])
     Rug R = Rug(load_RGBtexture("res/textures/traditional-persian.jpg"));
     Rug K = Rug(load_RGBtexture("res/textures/graybrick.png"));
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
+    Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
+    Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
     Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
-    Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/yellow_grid.png"));
+    Cylinder Bc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
+    Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/Metal G6.jpg"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
-    Wall W = Wall(load_RGBtexture("res/textures/wall2.jpg"));
+    Wall W = Wall(load_RGBtexture("res/textures/wall4.jpg"));
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
 
@@ -219,7 +222,7 @@ int main(int argc, char* argv[])
 
         // Draw Floor
         model = glm::mat4(1.0f);
-        model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.35f));
+        model = glm::scale(model, glm::vec3(4.65f, 3.5f, 3.33f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         F.DrawFloor();
 
@@ -244,7 +247,7 @@ int main(int argc, char* argv[])
         K.DrawRug();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 15.2f));
+        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 15.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -285,6 +288,7 @@ int main(int argc, char* argv[])
         model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
+
         
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
@@ -296,6 +300,26 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
+
+        //little Dome
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 0.0f, -10.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 5.0f, 3.0f));
+        model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        BB.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 1.35f, -10.0f));
+        model = glm::scale(model, glm::vec3(0.3f, 0.4f, 0.3f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bc.DrawCylinder();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 1.1f, -10.0f));
+        model = glm::scale(model, glm::vec3(1.3f, 1.0f, 1.3f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        BD.DrawDome();
 
         // Draw Chandelier
         model = glm::mat4(1.0f);
