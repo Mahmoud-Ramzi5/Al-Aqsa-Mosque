@@ -14,8 +14,8 @@ public:
     };
 
     unsigned int indices[6]{
-        0, 1, 2,
-        1, 2, 3
+        2, 3, 1,
+        1, 0, 2
     };
 
     Rug(unsigned int texture);

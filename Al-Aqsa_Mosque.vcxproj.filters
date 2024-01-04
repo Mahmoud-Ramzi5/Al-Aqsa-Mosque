@@ -60,6 +60,9 @@
     <ClCompile Include="src\Rug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Singlewall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependencies\includes\GL\eglew.h">
@@ -1409,6 +1412,9 @@
     <ClInclude Include="Dependencies\includes\Classes\Rug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\includes\Classes\Singlewall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\includes\glm\detail\func_common.inl">
@@ -1935,6 +1941,33 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\traditional-persian.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\sidewalk.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\graybrick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\sidewalk.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\mehrab.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\frontimam.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\Mihrab.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

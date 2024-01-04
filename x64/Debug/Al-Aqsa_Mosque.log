@@ -1,3 +1,3 @@
 ﻿  main.cpp
-D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\main.cpp(423,27): warning C4305: '+=': truncation from 'double' to 'float'
+D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\src\main.cpp(439,24): warning C4305: '+=': truncation from 'double' to 'float'
   Al-Aqsa_Mosque.vcxproj -> D:\draw_university\Al-Aqsa-Mosque-main\Al-Aqsa-Mosque\x64\Debug\Al-Aqsa_Mosque.exe

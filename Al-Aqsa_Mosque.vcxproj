@@ -135,6 +135,7 @@
     <ClCompile Include="src\Minaret.cpp" />
     <ClCompile Include="src\Building.cpp" />
     <ClCompile Include="src\Rug.cpp" />
+    <ClCompile Include="src\Singlewall.cpp" />
     <ClCompile Include="src\SkyBox.cpp" />
     <ClCompile Include="src\Floor.cpp" />
     <ClCompile Include="src\Dome.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Dependencies\includes\camera.h" />
     <ClInclude Include="Dependencies\includes\Classes\Building.h" />
     <ClInclude Include="Dependencies\includes\Classes\Rug.h" />
+    <ClInclude Include="Dependencies\includes\Classes\Singlewall.h" />
     <ClInclude Include="Dependencies\includes\Classes\Skyscrapper.h" />
     <ClInclude Include="Dependencies\includes\Classes\Sun.h" />
     <ClInclude Include="Dependencies\includes\glad\glad.h" />
@@ -760,6 +762,9 @@
     <Image Include="res\objects\tree\bark_loo.jpg" />
     <Image Include="res\objects\tree\blatt1.jpg" />
     <Image Include="res\objects\tree\blatt1_a.jpg" />
+    <Image Include="res\textures\1.png" />
+    <Image Include="res\textures\2.png" />
+    <Image Include="res\textures\3.png" />
     <Image Include="res\textures\awesomeface.png" />
     <Image Include="res\textures\back.jpg" />
     <Image Include="res\textures\bottom.jpg" />
@@ -771,12 +776,18 @@
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />
+    <Image Include="res\textures\frontimam.png" />
     <Image Include="res\textures\full skyscrapper.png" />
     <Image Include="res\textures\fullbuilding.png" />
     <Image Include="res\textures\fullwall.png" />
     <Image Include="res\textures\grass.jpg" />
+    <Image Include="res\textures\graybrick.png" />
+    <Image Include="res\textures\mehrab.jpg" />
     <Image Include="res\textures\Metal G6.jpg" />
+    <Image Include="res\textures\Mihrab.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
+    <Image Include="res\textures\sidewalk.jpg" />
+    <Image Include="res\textures\sidewalk.png" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\traditional-persian.jpg" />

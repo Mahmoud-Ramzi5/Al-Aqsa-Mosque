@@ -21,6 +21,7 @@
 #include <Classes/Dome.h>
 #include <Classes/Qubli.h>
 #include <Classes/Minaret.h>
+#include <Classes/Singlewall.h>
 #include <Classes/Wall.h>
 #include <Classes/Building.h>
 #include <Classes/Skyscrapper.h>
@@ -126,9 +127,11 @@ int main(int argc, char* argv[])
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
     Rug R = Rug(load_RGBtexture("res/textures/traditional-persian.jpg"));
+    Rug K = Rug(load_RGBtexture("res/textures/graybrick.png"));
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
+    Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
     Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/yellow_grid.png"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
@@ -211,17 +214,30 @@ int main(int argc, char* argv[])
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
-        model = glm::scale(model, glm::vec3(0.7f, 1.0f, 1.4f));
+        model = glm::scale(model, glm::vec3(0.715f, 1.0f, 1.4f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         C.DrawFloor();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.2f, 0.02f, 15.0f));
+        model = glm::translate(model, glm::vec3(4.27f, 0.02f, 15.0f));
         model = glm::scale(model, glm::vec3(0.7f, 1.0f, 0.3f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         R.DrawRug();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.02f, 1.8f));
+        model = glm::scale(model, glm::vec3(2.5f, 1.0f, 7.2f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        K.DrawRug();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 15.2f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Mehrab.DrawSinglewall();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(5.0f, 0.0f, -1.5f));
