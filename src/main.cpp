@@ -121,6 +121,7 @@ int main(int argc, char* argv[])
     };
 
     Sun sun = Sun(3.5f, 350);
+    Sun moon = Sun(1.5f, 350);
     SkyBox S = SkyBox(SkyBoxFaces);
     Floor F = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
@@ -139,7 +140,7 @@ int main(int argc, char* argv[])
 
     glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-
+    glm::vec3 MoonColor(0.3f, 0.3f, 0.3f);
     float offset = 0.0f;
     // render loop
     // -----------
@@ -190,11 +191,21 @@ int main(int argc, char* argv[])
         glUseProgram(sun.getShaderId());
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * cos(offset), 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "lightColor"), 1, GL_FALSE, glm::value_ptr(lightColor));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         sun.DrawSun();
-        
+        // draw moon
+
+        glUseProgram(moon.getShaderId());
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(51 * cos(offset), 51 * sin(offset), 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "lightColor"), 1, GL_FALSE, glm::value_ptr(MoonColor));
+        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
+        moon.DrawSun();
         // reuse shader
         shader.use();
 
@@ -421,6 +432,9 @@ int main(int argc, char* argv[])
         
         // increse offset
         offset += 0.005;
+        if (offset == 1) {
+            offset = 0;
+        }
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
