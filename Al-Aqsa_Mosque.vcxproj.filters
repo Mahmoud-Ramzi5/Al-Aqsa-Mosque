@@ -1967,6 +1967,9 @@
     <Image Include="res\textures\QubliDome.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\inside_Qubli.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\lib\freeglut.lib" />

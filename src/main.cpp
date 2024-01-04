@@ -55,6 +55,7 @@ float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
 // Models
+Model Rock;
 Model Tree1;
 Model Chandelier;
 Model MoonStick;
@@ -108,6 +109,7 @@ int main(int argc, char* argv[])
 
     // load models
     // -----------
+    Rock = Model("res/objects/rock/rock.obj");
     Tree1 = Model("res/objects/trees/tree1/Tree.obj");
     Chandelier = Model("res/objects/chandelier/11833_Chandelier_v1_l2.obj");
     MoonStick = Model("res/objects/MoonStick/19759_Crescent_Moon_v1.obj");
@@ -136,6 +138,7 @@ int main(int argc, char* argv[])
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
     Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
+    Qubli QQ = Qubli(load_RGBtexture("res/textures/inside_Qubli.jpg"));
     Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
     Cylinder Bc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
@@ -325,6 +328,12 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         OO.DrawOct();
 
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.05f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.35f, 0.35f, 0.35f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Rock.Draw(shader);
+
         // Draw little Dome
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(8.0f, 0.0f, -8.0f));
@@ -345,6 +354,14 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         BD.DrawDome();
 
+        // Draw MoonStick
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 1.4f, -8.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.035f, 0.035f, 0.035f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        MoonStick.Draw(shader);
+
         // Draw Qubli
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
@@ -363,6 +380,20 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(4.0f, 3.5f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
+
+        // Draw MoonStick
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 2.6f, 20.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        MoonStick.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
+        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        QQ.DrawQubli();
 
         // Draw Minarets
         model = glm::mat4(1.0f);
@@ -494,7 +525,7 @@ int main(int argc, char* argv[])
         }
         
         // increse offset
-        //offset += 0.005;
+        offset += 0.005;
         if (offset == 1) {
             offset = 0;
         }
