@@ -779,10 +779,12 @@
     <Image Include="res\textures\grass.jpg" />
     <Image Include="res\textures\gray.jpg" />
     <Image Include="res\textures\graybrick.png" />
+    <Image Include="res\textures\inside_Dome.png" />
     <Image Include="res\textures\little_cylinder.jpg" />
     <Image Include="res\textures\Metal G6.jpg" />
     <Image Include="res\textures\Mihrab.png" />
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
+    <Image Include="res\textures\QubliDome.jpg" />
     <Image Include="res\textures\selsela2.jpg" />
     <Image Include="res\textures\sidewalk.png" />
     <Image Include="res\textures\sky.png" />

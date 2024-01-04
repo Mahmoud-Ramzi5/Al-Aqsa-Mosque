@@ -57,6 +57,7 @@ float lastFrame = 0.0f;
 // Models
 Model Tree1;
 Model Chandelier;
+Model MoonStick;
 
 int main(int argc, char* argv[])
 {
@@ -109,7 +110,7 @@ int main(int argc, char* argv[])
     // -----------
     Tree1 = Model("res/objects/trees/tree1/Tree.obj");
     Chandelier = Model("res/objects/chandelier/11833_Chandelier_v1_l2.obj");
-
+    MoonStick = Model("res/objects/MoonStick/19759_Crescent_Moon_v1.obj");
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.5f, 3.5f)));
 
@@ -130,6 +131,7 @@ int main(int argc, char* argv[])
     Rug R = Rug(load_RGBtexture("res/textures/traditional-persian.jpg"));
     Rug K = Rug(load_RGBtexture("res/textures/graybrick.png"));
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
+    Octagon OO = Octagon(load_RGBAtexture("res/textures/inside_Dome.png"));
     Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
     Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
@@ -137,7 +139,7 @@ int main(int argc, char* argv[])
     Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
     Cylinder Bc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
-    Dome D2 = Dome(0.35f, 100, load_RGBtexture("res/textures/Metal G6.jpg"));
+    Dome D2 = Dome(0.35f, 250, load_RGBtexture("res/textures/QubliDome.jpg"));
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
     Wall W = Wall(load_RGBtexture("res/textures/wall4.jpg"));
@@ -146,7 +148,7 @@ int main(int argc, char* argv[])
 
     glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-    glm::vec3 MoonColor(0.3f, 0.3f, 0.3f);
+
     float offset = 0.0f;
     // render loop
     // -----------
@@ -197,21 +199,20 @@ int main(int argc, char* argv[])
         glUseProgram(sun.getShaderId());
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * cos(offset), 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "lightColor"), 1, GL_FALSE, glm::value_ptr(lightColor));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         sun.DrawSun();
-        // draw moon
 
+        // draw moon
         glUseProgram(moon.getShaderId());
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(51 * cos(offset), 51 * sin(offset), 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "lightColor"), 1, GL_FALSE, glm::value_ptr(MoonColor));
+        model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * -cos(offset), 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
         moon.DrawSun();
+
         // reuse shader
         shader.use();
 
@@ -281,7 +282,7 @@ int main(int argc, char* argv[])
         model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         DrawGrass(G, model, modelLoc, shader);
 
-        // Draw Dome of the Rock
+        // Draw Dome of the Rock (outSide)
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, -10.0f));
         model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
@@ -289,37 +290,16 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         O.DrawOct();
 
-        
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         cc.DrawCylinder();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 1.89f, -10.0f));
-        model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
+        model = glm::scale(model, glm::vec3(3.65f, 2.7f, 3.65f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D.DrawDome();
-
-        //little Dome
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(8.0f, 0.0f, -10.0f));
-        model = glm::scale(model, glm::vec3(3.0f, 5.0f, 3.0f));
-        model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        BB.DrawOct();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(8.0f, 1.35f, -10.0f));
-        model = glm::scale(model, glm::vec3(0.3f, 0.4f, 0.3f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Bc.DrawCylinder();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(8.0f, 1.1f, -10.0f));
-        model = glm::scale(model, glm::vec3(1.3f, 1.0f, 1.3f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        BD.DrawDome();
 
         // Draw Chandelier
         model = glm::mat4(1.0f);
@@ -329,6 +309,42 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Chandelier.Draw(shader);
 
+        // Draw MoonStick
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 4.5f, -10.0f)); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        MoonStick.Draw(shader);
+
+        // Draw Dome of the Rock (inSide)
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.01f, -10.0f));
+        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
+        model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        OO.DrawOct();
+
+        // Draw little Dome
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 0.0f, -8.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 5.0f, 3.0f));
+        model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        BB.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 1.41f, -8.0f));
+        model = glm::scale(model, glm::vec3(0.3f, 0.4f, 0.3f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bc.DrawCylinder();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(8.0f, 1.43f, -8.0f));
+        model = glm::scale(model, glm::vec3(1.1f, 0.85f, 1.1f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        BD.DrawDome();
+
         // Draw Qubli
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
@@ -337,8 +353,15 @@ int main(int argc, char* argv[])
         Q.DrawQubli();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 1.1f, 19.0f));
-        model = glm::scale(model, glm::vec3(5.4f, 5.4f, 5.4f));
+        model = glm::translate(model, glm::vec3(0.0f, 2.11f, 20.0f));
+        model = glm::scale(model, glm::vec3(0.51f, 0.3f, 0.51f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        cc.DrawCylinder();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 2.0f, 20.0f));
+        model = glm::scale(model, glm::vec3(4.0f, 3.5f, 4.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         D2.DrawDome();
 
         // Draw Minarets
@@ -471,7 +494,7 @@ int main(int argc, char* argv[])
         }
         
         // increse offset
-        offset += 0.005;
+        //offset += 0.005;
         if (offset == 1) {
             offset = 0;
         }

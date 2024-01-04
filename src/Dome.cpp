@@ -48,9 +48,9 @@ void Dome::DrawDome() {
 std::vector<glm::vec3> Dome::CreateDome() {
     std::vector<glm::vec3> vertices;
 
-    for (int i = 0; i <= NumSegments / 1.7; ++i) {
+    for (int i = 0; i <= NumSegments / 1.5; ++i) {
         for (int j = 0; j <= NumSegments; ++j) {
-            float phi = glm::pi<float>() * static_cast<float>(i) / (NumSegments) / 1.7;
+            float phi = glm::pi<float>() * static_cast<float>(i) / (NumSegments) / 1.5;
             float theta = 2.0f * glm::pi<float>() * static_cast<float>(j) / NumSegments;
 
             float x = DomeRadius * std::sin(phi) * std::cos(theta);
@@ -58,7 +58,7 @@ std::vector<glm::vec3> Dome::CreateDome() {
             float z = DomeRadius * std::sin(phi) * std::sin(theta);
 
             float u = static_cast<float>(j) / NumSegments;  // Texture coordinate U
-            float v = 1.0f - static_cast<float>(i) / (NumSegments / 1.7); // Texture coordinate V
+            float v = 1.0f - static_cast<float>(i) / (NumSegments / 1.5); // Texture coordinate V
 
             // positions
             vertices.push_back(glm::vec3(x, y, z));

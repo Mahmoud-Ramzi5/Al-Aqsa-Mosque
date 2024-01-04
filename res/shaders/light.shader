@@ -2,7 +2,6 @@
 #version 460 core
 
 layout(location = 0) in vec3 aPos;
-out vec3 lightyColor;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -18,7 +17,6 @@ void main()
 #version 460 core
 
 out vec4 FragColor;
-//uniform vec3 lightColor;
 
 void main()
 {
