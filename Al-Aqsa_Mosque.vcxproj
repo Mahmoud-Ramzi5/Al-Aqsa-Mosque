@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp.lib;glew32s.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32s.lib;glfw3.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -790,13 +790,13 @@
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg" />
     <Image Include="res\textures\qublicylander.jpg" />
     <Image Include="res\textures\QubliDome.jpg" />
+    <Image Include="res\textures\QubliRoof.png" />
     <Image Include="res\textures\selsela2.jpg" />
     <Image Include="res\textures\sidewalk.png" />
     <Image Include="res\textures\sky.png" />
     <Image Include="res\textures\skybox.png" />
     <Image Include="res\textures\traditional-persian.jpg" />
-    <Image Include="res\textures\wall2.jpg" />
-    <Image Include="res\textures\wall4.jpg" />
+    <Image Include="res\textures\wall.jpg" />
     <Image Include="res\textures\Y.png" />
     <Image Include="res\textures\yellow_grid.png" />
   </ItemGroup>
@@ -815,6 +815,11 @@
     <Library Include="Dependencies\lib\SDL2main.lib" />
     <Library Include="Dependencies\lib\SDL2test.lib" />
     <Library Include="Dependencies\lib\SOIL.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\audio\concrete-footsteps.wav" />
+    <Media Include="res\audio\running.wav" />
+    <Media Include="res\audio\walking.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

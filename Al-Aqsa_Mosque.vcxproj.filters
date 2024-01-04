@@ -1937,9 +1937,6 @@
     <Image Include="res\textures\dome_cylinder.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\textures\wall2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\textures\traditional-persian.jpg">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1950,9 +1947,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\Mihrab.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\wall4.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\selsela2.jpg">
@@ -1982,6 +1976,12 @@
     <Image Include="res\textures\dome.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\textures\QubliRoof.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\lib\freeglut.lib" />
@@ -1998,5 +1998,16 @@
     <Library Include="Dependencies\lib\assimp.lib" />
     <Library Include="Dependencies\lib\irrKlang.lib" />
     <Library Include="Dependencies\lib\SOIL.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\audio\concrete-footsteps.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="res\audio\running.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="res\audio\walking.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

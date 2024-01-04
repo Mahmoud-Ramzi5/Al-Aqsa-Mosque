@@ -26,9 +26,7 @@
 #include <Classes/Wall.h>
 #include <Classes/Building.h>
 #include <Classes/Skyscrapper.h>
-
-
-
+#include <irrklang/irrKlang.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -57,9 +55,13 @@ float lastFrame = 0.0f;
 
 // Models
 Model Rock;
+Model Bird;
 Model Tree1;
 Model Chandelier;
 Model MoonStick;
+
+// Load SoundEngine
+irrklang::ISoundEngine * SoundEngine = irrklang::createIrrKlangDevice();
 
 int main(int argc, char* argv[])
 {
@@ -111,6 +113,7 @@ int main(int argc, char* argv[])
     // load models
     // -----------
     Rock = Model("res/objects/rock/rock.obj");
+    Bird = Model("res/objects/bird/DOVE.OBJ");
     Tree1 = Model("res/objects/trees/tree1/Tree.obj");
     Chandelier = Model("res/objects/chandelier/11833_Chandelier_v1_l2.obj");
     MoonStick = Model("res/objects/MoonStick/19759_Crescent_Moon_v1.obj");
@@ -120,8 +123,8 @@ int main(int argc, char* argv[])
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
     unsigned int SkyBoxFaces[3]{
-        load_RGBtexture("res/textures/sky.png"),
-        load_RGBtexture("res/textures/skybox.png"),
+        load_RGBAtexture("res/textures/sky.png"),
+        load_RGBtexture("res/textures/GG.png"),
         load_RGBtexture("res/textures/down.png")
     };
 
@@ -133,24 +136,32 @@ int main(int argc, char* argv[])
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
     Rug R = Rug(load_RGBtexture("res/textures/traditional-persian.jpg"));
     Rug K = Rug(load_RGBtexture("res/textures/graybrick.png"));
+    // Dome of the Rock
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Octagon OO = Octagon(load_RGBAtexture("res/textures/inside_Dome.png"));
-    Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
-    Dome D = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
-    Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
-    Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
-    Qubli QQ = Qubli(load_RGBtexture("res/textures/inside_Qubli.jpg"));  
-    Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
+    Dome OD = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
-    Cylinder Qc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/qublicylander.jpg"));
-    Cylinder Bc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
-    Dome D2 = Dome(0.35f, 250, load_RGBtexture("res/textures/QubliDome.jpg"));
+    // Little Dome
+    Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
+    Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
+    Cylinder BC = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/little_cylinder.jpg"));
+    // Qubli
+    Qubli Q = Qubli(load_RGBAtexture("res/textures/fullwall.png"));
+    Qubli QQ = Qubli(load_RGBtexture("res/textures/inside_Qubli.jpg"));
+    Dome QD = Dome(0.35f, 250, load_RGBtexture("res/textures/QubliDome.jpg"));
+    Floor QR = Floor(load_RGBtexture("res/textures/QubliRoof.png"));
+    Cylinder QC = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/qublicylander.jpg"));
+    Singlewall Mehrab = Singlewall(load_RGBtexture("res/textures/Mihrab.png"));
+    // Minaret
     Minaret m = Minaret(load_RGBtexture("res/textures/complete_minaret.png"));
     Octagon mo = Octagon(load_RGBtexture("res/textures/Metal G6.jpg"));
-    Wall W = Wall(load_RGBtexture("res/textures/wall4.jpg"));
+    // Wall
+    Wall W = Wall(load_RGBtexture("res/textures/wall.jpg"));
+    // Buildings
     Building B = Building(load_RGBAtexture("res/textures/fullbuilding.png"));
     Skyscrapper B2 = Skyscrapper(load_RGBAtexture("res/textures/full skyscrapper.png"));
 
+    // Light Attribs
     glm::vec3 lightPos(0.0f, 0.0, 0.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 
@@ -233,38 +244,21 @@ int main(int argc, char* argv[])
         F.DrawFloor();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
-        model = glm::scale(model, glm::vec3(0.715f, 1.0f, 1.4f));
-        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        C.DrawFloor();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.27f, 0.02f, 16.0f));
-        model = glm::scale(model, glm::vec3(0.7f, 1.0f, 0.3f));
-        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        R.DrawRug();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, 0.02f, 1.8f));
-        model = glm::scale(model, glm::vec3(2.5f, 1.0f, 7.2f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        K.DrawRug();
-
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 16.5f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Mehrab.DrawSinglewall();
-
-        model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(5.0f, 0.0f, -1.5f));
         DrawGrass(G, model, modelLoc, shader);
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -1.5f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(17.0f, 0.0f, 15.0f));
+        model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        DrawGrass(G, model, modelLoc, shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-17.0f, 0.0f, 15.0f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         DrawGrass(G, model, modelLoc, shader);
 
         model = glm::mat4(1.0f);
@@ -304,7 +298,7 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
         model = glm::scale(model, glm::vec3(3.65f, 2.7f, 3.65f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        D.DrawDome();
+        OD.DrawDome();
 
         // Draw Chandelier
         model = glm::mat4(1.0f);
@@ -348,7 +342,7 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(8.0f, 1.41f, -8.0f));
         model = glm::scale(model, glm::vec3(0.3f, 0.4f, 0.3f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Bc.DrawCylinder();
+        BC.DrawCylinder();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(8.0f, 1.43f, -8.0f));
@@ -364,6 +358,42 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         MoonStick.Draw(shader);
 
+        // Draw Birds
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(10 * sin(glfwGetTime()), 11.0f, 10 * cos(glfwGetTime()))); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(60 * (float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bird.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(12.5 * sin(glfwGetTime()), 11.5f, 12.5 * cos(glfwGetTime()))); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(60 * (float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bird.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(15 * sin(glfwGetTime()), 12.0f, 15 * cos(glfwGetTime()))); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(60 * (float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(6.0f, 6.0f, 6.0f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bird.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(17.5 * sin(glfwGetTime()), 11.5f, 17.5 * cos(glfwGetTime()))); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(60 * (float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bird.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(20 * sin(glfwGetTime()), 11.0f, 20 * cos(glfwGetTime()))); // translate it down so it's at the center of the scene
+        model = glm::rotate(model, glm::radians(60 * (float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));  // it's a bit too big for our scene, so scale it down
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Bird.Draw(shader);
+
         // Draw Qubli
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 16.0f));
@@ -375,20 +405,13 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(0.0f, 2.11f, 20.0f));
         model = glm::scale(model, glm::vec3(0.51f, 0.3f, 0.51f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        Qc.DrawCylinder();
+        QC.DrawCylinder();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.0f, 20.0f));
         model = glm::scale(model, glm::vec3(4.0f, 3.5f, 4.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        D2.DrawDome();
-
-        //Draw Qubli (Inside)
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, -0.01f, 16.0f));
-        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        QQ.DrawQubli();
+        QD.DrawDome();
 
         // Draw MoonStick
         model = glm::mat4(1.0f);
@@ -398,53 +421,91 @@ int main(int argc, char* argv[])
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         MoonStick.Draw(shader);
 
+        //Draw Qubli (Inside)
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.01f, 16.0f));
+        model = glm::scale(model, glm::vec3(9.99f, 9.99f, 9.99f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        QQ.DrawQubli();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 1.98f, 16.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        QR.DrawFloor();
  
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.015f, 16.0f));
+        model = glm::scale(model, glm::vec3(0.715f, 1.0f, 1.4f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        C.DrawFloor();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.27f, 0.02f, 16.0f));
+        model = glm::scale(model, glm::vec3(0.7f, 1.0f, 0.3f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        R.DrawRug();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.02f, 1.8f));
+        model = glm::scale(model, glm::vec3(2.5f, 1.0f, 7.2f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        K.DrawRug();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(4.99f, 0.02f, 16.5f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        Mehrab.DrawSinglewall();
 
         // Draw Minarets
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 1.0f, -23.3f));
+        model = glm::translate(model, glm::vec3(23.5f, 1.45f, -23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 3.4f, -23.3f));
+        model = glm::translate(model, glm::vec3(23.5f, 3.85f, -23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, -23.3f));
+        model = glm::translate(model, glm::vec3(-23.5f, 1.45f, -23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, -23.3f));
+        model = glm::translate(model, glm::vec3(-23.5f, 3.85f, -23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 1.0f, 23.3f));
+        model = glm::translate(model, glm::vec3(-23.5f, 1.45f, 23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-23.3f, 3.4f, 23.3f));
+        model = glm::translate(model, glm::vec3(-23.5f, 3.85f, 23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 1.0f, 23.3f));
+        model = glm::translate(model, glm::vec3(23.5f, 1.45f, 23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         m.DrawMinaret();
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(23.3f, 3.4f, 23.3f));
+        model = glm::translate(model, glm::vec3(23.5f, 3.85f, 23.5f));
         model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         mo.DrawOct();
@@ -540,6 +601,9 @@ int main(int argc, char* argv[])
         glfwPollEvents();
     }
 
+    // Drop SoundEngine
+    SoundEngine->drop();
+
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
     glfwTerminate();
@@ -553,17 +617,36 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
-
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+        if (!SoundEngine->isCurrentlyPlaying("res/audio/running.wav")) {
+            SoundEngine->play2D("res/audio/running.wav", false);
+        }
         camera.ProcessKeyboard(LEFT_SHIFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    }
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
+            SoundEngine->play2D("res/audio/walking.wav", false);
+        }
         camera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
+            SoundEngine->play2D("res/audio/walking.wav", false);
+        }
         camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
+            SoundEngine->play2D("res/audio/walking.wav", false);
+        }
         camera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
+            SoundEngine->play2D("res/audio/walking.wav", false);
+        }
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

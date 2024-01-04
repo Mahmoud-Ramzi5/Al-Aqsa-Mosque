@@ -97,9 +97,9 @@ public:
     void ProcessKeyboard(Camera_Movement direction, float deltaTime)
     {
         float velocity = MovementSpeed * deltaTime;
-        float velocitywow = velocity * 5;
+        float velocitywow = velocity * 7;
         if (direction == LEFT_SHIFT) {
-            velocitywow = velocity * 10;
+            velocitywow = velocity * 13;
             if (is_FPS) {
                 Position += Front * velocitywow;
                 PlayerPos.x += (Front.x * velocitywow);
@@ -152,7 +152,7 @@ public:
             }
         }
         if (is_FPS) {
-            //Position.y = 0.5f;
+            Position.y = 0.5f;
         }
         else {
             Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
