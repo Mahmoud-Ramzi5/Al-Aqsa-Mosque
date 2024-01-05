@@ -39,6 +39,7 @@ Wall::Wall(unsigned int texture) {
 
 void Wall::DrawWall(unsigned int shaderId, int i) {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureWall);
 
     // calculate the model matrix for each object and pass it to shader before drawing    

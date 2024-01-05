@@ -8,7 +8,6 @@
 #include <vector>
 #include <iostream>
 
-
 Cylinder::Cylinder(float radius, float height, unsigned int texture) {
     Radius = radius;
     Height = height;
@@ -43,6 +42,7 @@ Cylinder::Cylinder(float radius, float height, unsigned int texture) {
 
 void Cylinder::DrawCylinder() {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureCylinder);
     glDrawElements(GL_TRIANGLES, 360 * 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);

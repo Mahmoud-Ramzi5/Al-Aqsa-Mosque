@@ -34,6 +34,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 unsigned int load_RGBtexture(const char* source);
 unsigned int load_RGBAtexture(const char* source);
+unsigned int loadCubemap(vector<std::string> faces);
 void processInput(GLFWwindow* window);
 
 void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader);
@@ -108,7 +109,8 @@ int main(int argc, char* argv[])
 
     // load shader
     Shader shader = Shader("res/shaders/Basic.shader");
-
+    Shader lightShader = Shader("res/shaders/light.shader");
+    Shader SkyBoxShader = Shader("res/shaders/SkyBox.shader");
 
     // load models
     // -----------
@@ -120,17 +122,23 @@ int main(int argc, char* argv[])
     player = Player(glm::vec3(0.0f, 0.0f, -1.0f), "res/objects/player/ninja character.obj");
     camera = Camera((glm::vec3(0.0f, 0.5f, 3.5f)));
 
+    shader.use();
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
+
+    SkyBoxShader.use();
+    glUniform1i(glGetUniformLocation(SkyBoxShader.ID, "skybox"), 1);
 
     unsigned int SkyBoxFaces[3]{
         load_RGBtexture("res/textures/sky2.jpg"),
         load_RGBtexture("res/textures/Distance3.jpg"),
-        load_RGBtexture("res/textures/down.png")
+        load_RGBtexture("res/textures/down.jpg")
     };
 
-    Sun sun = Sun(3.5f, 350);
-    Sun moon = Sun(1.5f, 350);
+    Sun sun = Sun(7.5f, 500);
+    Sun moon = Sun(3.5f, 500);
     SkyBox S = SkyBox(SkyBoxFaces);
+    // Floors
+    Floor F5 = Floor(load_RGBtexture("res/textures/down.jpg"));
     Floor F = Floor(load_RGBtexture("res/textures/floor.jpg"));
     Floor G = Floor(load_RGBtexture("res/textures/grass.jpg"));
     Floor C = Floor(load_RGBtexture("res/textures/carpet.jpg"));
@@ -140,7 +148,8 @@ int main(int argc, char* argv[])
     Octagon O = Octagon(load_RGBAtexture("res/textures/Dome.png"));
     Octagon OO = Octagon(load_RGBAtexture("res/textures/inside_Dome.png"));
     Dome OD = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
-    Cylinder cc = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
+    Cylinder OC = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
+    Cylinder RC = Cylinder(1.2f, 0.8f, load_RGBtexture("res/textures/Y.png"));
     // Little Dome
     Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
     Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
@@ -185,10 +194,11 @@ int main(int argc, char* argv[])
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Use the shader program
-        shader.use();
         lightPos.x = 100 * sin(offset);
         lightPos.y = 100 * cos(offset);
+
+        // Use Basic shader program
+        shader.use();
         glUniform3fv(glGetUniformLocation(shader.ID, "lightPos"), 1, glm::value_ptr(lightPos));
         glUniform3fv(glGetUniformLocation(shader.ID, "lightColor"), 1, glm::value_ptr(lightColor));
         glUniform3fv(glGetUniformLocation(shader.ID, "viewpos"), 1, glm::value_ptr(camera.Position));
@@ -207,42 +217,22 @@ int main(int argc, char* argv[])
         model = glm::translate(model, glm::vec3(0.0, 0.0, 0.0));
         unsigned int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glActiveTexture(GL_TEXTURE0);
-
 
         // Start Drawing
-        // draw sun
-        glUseProgram(sun.getShaderId());
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * cos(offset), 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(sun.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
-        sun.DrawSun();
-
-        // draw moon
-        glUseProgram(moon.getShaderId());
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(51 * sin(offset), 51 * -cos(offset), 0.0f));
-        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(moon.getShaderId(), "model"), 1, GL_FALSE, glm::value_ptr(model));
-        moon.DrawSun();
-
-        // reuse shader
-        shader.use();
-
-        // Draw SkyBox
-        model = glm::mat4(1.0f);
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        S.DrawSkyBox();
 
         // Draw Floor
         model = glm::mat4(1.0f);
-        model = glm::scale(model, glm::vec3(4.65f, 3.5f, 3.33f));
+        model = glm::translate(model, glm::vec3(0.0f, -0.001f, 0.0f));
+        model = glm::scale(model, glm::vec3(60.0f, 1.0f, 50.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        F5.DrawFloor();
+
+        model = glm::mat4(1.0f);
+        model = glm::scale(model, glm::vec3(4.65f, 1.0f, 3.33f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         F.DrawFloor();
 
+        // Draw Grass
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(5.0f, 0.0f, -1.5f));
         DrawGrass(G, model, modelLoc, shader);
@@ -292,7 +282,7 @@ int main(int argc, char* argv[])
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        cc.DrawCylinder();
+        OC.DrawCylinder();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 2.9f, -10.0f));
@@ -329,6 +319,12 @@ int main(int argc, char* argv[])
         model = glm::scale(model, glm::vec3(0.35f, 0.35f, 0.35f));  // it's a bit too big for our scene, so scale it down
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         Rock.Draw(shader);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -0.05f, -10.0f));
+        model = glm::scale(model, glm::vec3(1.0f, 0.75f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        RC.DrawCylinder();
 
         // Draw little Dome
         model = glm::mat4(1.0f);
@@ -589,9 +585,44 @@ int main(int argc, char* argv[])
         else {
             player.DrawPlayer(shader, camera.GetPlayerPos());
         }
+
+        // user lightShader
+        lightShader.use();
+        glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        // Draw sun
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(75 * sin(offset), 75 * cos(offset), 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        sun.DrawSun();
+
+        // Draw moon
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(75 * sin(offset), 75 * -cos(offset), 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(lightShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        moon.DrawSun();
+
+        // Draw SkyBox
+        model = glm::mat4(1.0f);
+        view = glm::mat4(glm::mat3(camera.GetViewMatrix())); // remove translation from the view matrix
+        glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
+        SkyBoxShader.use();         // Use SkyBox shader program
+        glUniform3fv(glGetUniformLocation(SkyBoxShader.ID, "lightPos"), 1, glm::value_ptr(lightPos));
+        glUniform3fv(glGetUniformLocation(SkyBoxShader.ID, "lightColor"), 1, glm::value_ptr(lightColor));
+        glUniform3fv(glGetUniformLocation(SkyBoxShader.ID, "viewpos"), 1, glm::value_ptr(camera.Position));
+
+        glUniformMatrix4fv(glGetUniformLocation(SkyBoxShader.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glUniformMatrix4fv(glGetUniformLocation(SkyBoxShader.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(glGetUniformLocation(SkyBoxShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        S.DrawSkyBox();
+        glBindVertexArray(0);
+        glDepthFunc(GL_LESS); // set depth function back to default
         
+        // reuse 
+        shader.use();
+
         // increse offset
-        offset += 0.005;
+        offset += 0.001;
         if (offset == 1) {
             offset = 0;
         }
@@ -616,18 +647,20 @@ void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
-        if (!SoundEngine->isCurrentlyPlaying("res/audio/running.wav")) {
-            SoundEngine->play2D("res/audio/running.wav", false);
-        }
-        camera.ProcessKeyboard(LEFT_SHIFT, deltaTime);
-    }
+    
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
-            SoundEngine->play2D("res/audio/walking.wav", false);
+        if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+            if (!SoundEngine->isCurrentlyPlaying("res/audio/running.wav")) {
+                SoundEngine->play2D("res/audio/running.wav", false);
+            }
+            camera.ProcessKeyboard(FAST_FORWARD, deltaTime);
         }
-        camera.ProcessKeyboard(FORWARD, deltaTime);
+        else {
+            if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
+                SoundEngine->play2D("res/audio/walking.wav", false);
+            }
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        }
     }
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
         if (!SoundEngine->isCurrentlyPlaying("res/audio/walking.wav")) {
@@ -754,6 +787,44 @@ unsigned int load_RGBAtexture(const char* source) {
     }
     stbi_image_free(data);
     return texture;
+}
+
+// loads a cubemap texture from 6 individual texture faces
+// order:
+// +X (right)
+// -X (left)
+// +Y (top)
+// -Y (bottom)
+// +Z (front) 
+// -Z (back)
+// -------------------------------------------------------
+unsigned int loadCubemap(vector<std::string> faces) {
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+
+    int width, height, nrChannels;
+    for (unsigned int i = 0; i < faces.size(); i++)
+    {
+        unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+        if (data)
+        {
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            stbi_image_free(data);
+        }
+        else
+        {
+            std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
+            stbi_image_free(data);
+        }
+    }
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+    return textureID;
 }
 
 void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader) {

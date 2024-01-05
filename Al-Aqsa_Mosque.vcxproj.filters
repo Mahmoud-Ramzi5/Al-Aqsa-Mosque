@@ -1866,6 +1866,7 @@
     <None Include="Dependencies\dlls\ikpMP3.dll" />
     <None Include="Dependencies\dlls\irrKlang.dll" />
     <None Include="res\shaders\light.shader" />
+    <None Include="res\shaders\SkyBox.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\back.jpg">
@@ -1890,9 +1891,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\photo_2023-12-24_11-24-34.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\textures\down.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\skybox.png">
@@ -1980,6 +1978,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\textures\wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\Distance3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\down.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

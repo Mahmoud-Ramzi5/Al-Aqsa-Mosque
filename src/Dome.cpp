@@ -39,6 +39,7 @@ Dome::Dome(float radius, int numSegments, unsigned int texture) {
 
 void Dome::DrawDome() {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureDome);
     glDrawArrays(GL_TRIANGLE_FAN, 0, DomeVertices.size());
     glBindVertexArray(0);

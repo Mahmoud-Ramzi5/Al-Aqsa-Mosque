@@ -16,11 +16,9 @@ public:
 	float SunRadius;
 	int NumSegments;
 	std::vector<glm::vec3> SunVertices;
-	Shader sunShader;
 
 	Sun(float radius, int numSegments);
 	void DrawSun();
-	unsigned int getShaderId();
 
 private:
 	std::vector<glm::vec3> CreateSun();

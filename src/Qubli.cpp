@@ -45,6 +45,7 @@ unsigned int* Qubli::GetIndices() {
 void Qubli::DrawQubli()
 {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureQubli);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);

@@ -13,13 +13,13 @@ enum Camera_Movement {
     BACKWARD,
     LEFT,
     RIGHT,
-    LEFT_SHIFT
+    FAST_FORWARD
 };
 
 // Default camera values
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
-const float SPEED = 2.5f;
+const float SPEED = 9.0f;
 const float SENSITIVITY = 0.1f;
 const float DISTANCE = 4.5f;
 const float ZOOM = 45.0f;
@@ -31,6 +31,7 @@ bool is_FPS = true;
 class Camera
 {
 public:
+    float Gravity = 9.81f;
     // camera Attributes
     glm::vec3 Position;
     glm::vec3 Front;
@@ -98,19 +99,17 @@ public:
     {
         float velocity = MovementSpeed * deltaTime;
         float velocitywow = velocity * 7;
-        if (direction == LEFT_SHIFT) {
-            velocitywow = velocity * 13;
+
+        if (direction == FAST_FORWARD) {
             if (is_FPS) {
                 Position += Front * velocitywow;
                 PlayerPos.x += (Front.x * velocitywow);
                 PlayerPos.z += (Front.z * velocitywow);
             }
             else {
-                PlayerPos += Front * velocity;
+                PlayerPos += Front * velocitywow;
             }
         }
-
-
         if (direction == FORWARD) {
             if (is_FPS) {
                 Position += Front * velocity;
@@ -153,10 +152,35 @@ public:
         }
         if (is_FPS) {
             Position.y = 0.5f;
+            if (Position.x > 50) {
+                Position.x = 50;
+            }
+            if (Position.x < -50) {
+                Position.x = -50;
+            }
+            if (Position.z > 50) {
+                Position.z = 50;
+            }
+            if (Position.z < -50) {
+                Position.z = -50;
+            }
         }
         else {
+            if (PlayerPos.x > 47) {
+                PlayerPos.x = 47;
+            }
+            if (PlayerPos.x < -47) {
+                PlayerPos.x = -47;
+            }
+            if (PlayerPos.z > 47) {
+                PlayerPos.z = 47;
+            }
+            if (PlayerPos.z < -47) {
+                PlayerPos.z = -47;
+            }
             Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
         }
+
     }
 
     // processes input received from a mouse input system. Expects the offset value in both the x and y direction.

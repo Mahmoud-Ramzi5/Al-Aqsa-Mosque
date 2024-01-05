@@ -42,6 +42,7 @@ unsigned int* Octagon::GetIndices() {
 void Octagon::DrawOct()
 {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureOct);
     glDrawElements(GL_TRIANGLES, 96, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);

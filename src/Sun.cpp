@@ -12,7 +12,6 @@ Sun::Sun(float radius, int numSegments) {
     SunRadius = radius;
     NumSegments = numSegments;
     SunVertices = CreateSun();
-    sunShader = Shader("res/shaders/light.shader");
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -31,13 +30,9 @@ Sun::Sun(float radius, int numSegments) {
 }
 
 void Sun::DrawSun() {
-    sunShader.use();
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glDrawArrays(GL_TRIANGLE_FAN, 0, SunVertices.size());
-}
-
-unsigned int Sun::getShaderId() {
-    return sunShader.ID;
 }
 
 // Function to create a dome geometry

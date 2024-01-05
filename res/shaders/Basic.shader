@@ -14,11 +14,10 @@ uniform mat4 projection;
 
 void main()
 {
+    fragmentTextures = textures;
     FragPos = vec3(model * vec4(aPos, 1.0));
     Normal = mat3(transpose(inverse(model))) * aNormal;
-
     gl_Position = projection * view * model * vec4(aPos, 1.0);
-    fragmentTextures = textures;
 }
 
 #shader fragment
@@ -36,9 +35,9 @@ uniform sampler2D texture0;
 
 void main()
 {
-    vec4 objectColor= texture(texture0, fragmentTextures);
+    vec4 objectColor = texture(texture0, fragmentTextures);
     // ambient    
-    float ambientStrength = 0.1;
+    float ambientStrength = 0.15;
     vec3 ambient = ambientStrength * lightColor;
 
     // diffuse 

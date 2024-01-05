@@ -1,5 +1,6 @@
 #include "Classes/SkyBox.h"
 #include <glad/glad.h>
+
 SkyBox::SkyBox(unsigned int texture[3]) {
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -43,6 +44,7 @@ unsigned int* SkyBox::GetIndices() {
 void SkyBox::DrawSkyBox() 
 {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, textureSky[0]);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindTexture(GL_TEXTURE_2D, textureSky[1]);

@@ -758,6 +758,7 @@
     <None Include="res\objects\tree\Tree1.3ds" />
     <None Include="res\shaders\Basic.shader" />
     <None Include="res\shaders\light.shader" />
+    <None Include="res\shaders\SkyBox.shader" />
     <None Include="x64\Debug\Al-Aqsa_Mosque.tlog\Cl.items.tlog" />
   </ItemGroup>
   <ItemGroup>
@@ -768,10 +769,11 @@
     <Image Include="res\textures\bottom.jpg" />
     <Image Include="res\textures\carpet.jpg" />
     <Image Include="res\textures\complete_minaret.png" />
+    <Image Include="res\textures\Distance3.jpg" />
     <Image Include="res\textures\dome.jpg" />
     <Image Include="res\textures\Dome.png" />
     <Image Include="res\textures\dome_cylinder.jpg" />
-    <Image Include="res\textures\down.png" />
+    <Image Include="res\textures\down.jpg" />
     <Image Include="res\textures\face.png" />
     <Image Include="res\textures\floor.jpg" />
     <Image Include="res\textures\front.jpg" />

@@ -42,6 +42,7 @@ unsigned int* Skyscrapper::GetIndices() {
 void Skyscrapper::DrawSkyscrapper()
 {
     glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureSkyscrapper);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
