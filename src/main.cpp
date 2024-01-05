@@ -123,8 +123,8 @@ int main(int argc, char* argv[])
     glUniform1i(glGetUniformLocation(shader.ID, "texture0"), 0);
 
     unsigned int SkyBoxFaces[3]{
-        load_RGBAtexture("res/textures/sky.png"),
-        load_RGBtexture("res/textures/GG.png"),
+        load_RGBtexture("res/textures/sky2.jpg"),
+        load_RGBtexture("res/textures/Distance2.jpg"),
         load_RGBtexture("res/textures/down.png")
     };
 
