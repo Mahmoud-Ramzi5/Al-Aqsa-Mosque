@@ -36,12 +36,14 @@ unsigned int load_RGBtexture(const char* source);
 unsigned int load_RGBAtexture(const char* source);
 unsigned int loadCubemap(vector<std::string> faces);
 void processInput(GLFWwindow* window);
+void toggleFullscreen(GLFWwindow* window);
+
 
 void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader);
 
 // settings
-const unsigned int SCR_WIDTH = 1000;
-const unsigned int SCR_HEIGHT = 1000;
+const unsigned int SCR_WIDTH = 1200;
+const unsigned int SCR_HEIGHT = 1200;
 
 // camera
 Player player;
@@ -49,6 +51,7 @@ Camera camera;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
+bool isFullscreen = false;
 
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
@@ -680,6 +683,9 @@ void processInput(GLFWwindow* window)
         }
         camera.ProcessKeyboard(RIGHT, deltaTime);
     }
+    if (glfwGetKey(window, GLFW_KEY_F11) == GLFW_PRESS) {
+        toggleFullscreen(window);
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -932,4 +938,20 @@ void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader
     model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     Tree1.Draw(shader);
+}
+void toggleFullscreen(GLFWwindow* window) {
+    if (isFullscreen) {
+        // Restore windowed mode
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        glfwSetWindowMonitor(window, nullptr, 100, 100, 800, 600, GLFW_DONT_CARE);
+    }
+    else {
+        // Enable fullscreen mode
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+    }
+
+    isFullscreen = !isFullscreen;
 }
