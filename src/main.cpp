@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
 
     unsigned int SkyBoxFaces[3]{
         load_RGBtexture("res/textures/sky2.jpg"),
-        load_RGBtexture("res/textures/Distance2.jpg"),
+        load_RGBtexture("res/textures/Distance3.jpg"),
         load_RGBtexture("res/textures/down.png")
     };
 
