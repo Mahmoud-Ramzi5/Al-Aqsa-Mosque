@@ -690,9 +690,7 @@ void processInput(GLFWwindow* window)
         }
         camera.ProcessKeyboard(RIGHT, deltaTime);
     }
-    if (glfwGetKey(window, GLFW_KEY_F11) == GLFW_PRESS) {
-        toggleFullscreen(window);
-    }
+   
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -717,6 +715,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             is_FPS = true;
             camera.ChangeView();
         }
+    }
+    if (glfwGetKey(window, GLFW_KEY_F11) == GLFW_PRESS) {
+        toggleFullscreen(window);
     }
 }
 
@@ -951,7 +952,7 @@ void toggleFullscreen(GLFWwindow* window) {
         // Restore windowed mode
         GLFWmonitor* monitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-        glfwSetWindowMonitor(window, nullptr, 100, 100, 800, 600, GLFW_DONT_CARE);
+        glfwSetWindowMonitor(window, nullptr, 100, 100, 1000, 1000, GLFW_DONT_CARE);
     }
     else {
         // Enable fullscreen mode
