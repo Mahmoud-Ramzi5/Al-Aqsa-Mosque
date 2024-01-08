@@ -42,8 +42,8 @@ void toggleFullscreen(GLFWwindow* window);
 void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader);
 
 // settings
-const unsigned int SCR_WIDTH = 1200;
-const unsigned int SCR_HEIGHT = 1200;
+const unsigned int SCR_WIDTH = 1000;
+const unsigned int SCR_HEIGHT = 1000;
 
 // camera
 Player player;
