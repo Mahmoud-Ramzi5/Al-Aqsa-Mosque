@@ -153,6 +153,7 @@ int main(int argc, char* argv[])
     Dome OD = Dome(0.75f, 250, load_RGBtexture("res/textures/yellow_grid.png"));
     Cylinder OC = Cylinder(2.64f, 0.8f, load_RGBtexture("res/textures/dome_cylinder.jpg"));
     Cylinder RC = Cylinder(1.2f, 0.8f, load_RGBtexture("res/textures/Y.png"));
+    Rug OS = Rug(load_RGBtexture("res/textures/quba-floor.jpg"));
     // Little Dome
     Octagon BB = Octagon(load_RGBtexture("res/textures/selsela2.jpg"));
     Dome BD = Dome(0.75f, 250, load_RGBtexture("res/textures/gray.jpg"));
@@ -316,6 +317,12 @@ int main(int argc, char* argv[])
         model = glm::rotate(model, glm::radians(22.5f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         OO.DrawOct();
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.01f, -10.0f));
+        model = glm::scale(model, glm::vec3(6.0f, 4.5f, 4.2f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        OS.DrawRug();
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -0.05f, -10.0f)); // translate it down so it's at the center of the scene
