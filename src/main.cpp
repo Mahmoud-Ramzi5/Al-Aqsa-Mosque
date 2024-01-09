@@ -42,8 +42,9 @@ void toggleFullscreen(GLFWwindow* window);
 void DrawGrass(Floor G, glm::mat4& Model, unsigned int& modelLoc, Shader& shader);
 
 // settings
-const unsigned int SCR_WIDTH = 1000;
-const unsigned int SCR_HEIGHT = 1000;
+float AspectRatio = 16.0f / 9.0f;
+const unsigned int SCR_WIDTH = 1280;
+const unsigned int SCR_HEIGHT = static_cast<int>(SCR_WIDTH / AspectRatio);
 
 // camera
 Player player;
@@ -700,6 +701,10 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+
+    // Maintain aspect ratio
+    int newHeight = static_cast<int>(width / AspectRatio);
+    glfwSetWindowSize(window, width, newHeight);
 }
 
 // glfw: whenever a key is pressed, this callback is called
@@ -952,12 +957,14 @@ void toggleFullscreen(GLFWwindow* window) {
         // Restore windowed mode
         GLFWmonitor* monitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-        glfwSetWindowMonitor(window, nullptr, 100, 100, 1000, 1000, GLFW_DONT_CARE);
+        framebuffer_size_callback(window, 1280, 720);
+        glfwSetWindowMonitor(window, nullptr, 100, 100, 1280, 720, GLFW_DONT_CARE);
     }
     else {
         // Enable fullscreen mode
         GLFWmonitor* monitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        framebuffer_size_callback(window, mode->width, mode->height);
         glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
     }
 
