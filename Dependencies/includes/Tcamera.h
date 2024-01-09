@@ -50,7 +50,7 @@ public:
     float Zoom;
 
     // constructor with vectors
-    Camera(glm::vec3 position = glm::vec3(0.0f, 1.5f, 3.5f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), PlayerPos(glm::vec3(0.0f, 0.0f, -1.0f)), cameraHeight(glm::vec3(0.0f, 1.0f, 0.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), DistanceFromPlayer(DISTANCE), Zoom(ZOOM)
+    Camera(glm::vec3 position = glm::vec3(0.0f, 1.5f, 3.5f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), PlayerPos(glm::vec3(0.0f, 0.0f, -1.0f)), cameraHeight(glm::vec3(0.0f, 1.5f, 0.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), DistanceFromPlayer(DISTANCE), Zoom(ZOOM)
     {
         Position = position;
         WorldUp = up;
@@ -152,31 +152,31 @@ public:
         }
         if (is_FPS) {
             Position.y = 0.5f;
-            if (Position.x > 50) {
-                Position.x = 50;
+            if (Position.x > 23) {
+                Position.x = 23;
             }
-            if (Position.x < -50) {
-                Position.x = -50;
+            if (Position.x < -23) {
+                Position.x = -23;
             }
-            if (Position.z > 50) {
-                Position.z = 50;
+            if (Position.z > 23) {
+                Position.z = 23;
             }
-            if (Position.z < -50) {
-                Position.z = -50;
+            if (Position.z < -23) {
+                Position.z = -23;
             }
         }
         else {
-            if (PlayerPos.x > 47) {
-                PlayerPos.x = 47;
+            if (PlayerPos.x > 23) {
+                PlayerPos.x = 23;
             }
-            if (PlayerPos.x < -47) {
-                PlayerPos.x = -47;
+            if (PlayerPos.x < -23) {
+                PlayerPos.x = -23;
             }
-            if (PlayerPos.z > 47) {
-                PlayerPos.z = 47;
+            if (PlayerPos.z > 23) {
+                PlayerPos.z = 23;
             }
-            if (PlayerPos.z < -47) {
-                PlayerPos.z = -47;
+            if (PlayerPos.z < -23) {
+                PlayerPos.z = -23;
             }
             Position = (PlayerPos + cameraHeight) - DistanceFromPlayer * Front;
         }
